@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --navy: #10253f;
+    --blue: #2674d9;
+    --orange: #ff8a3d;
+    --cream: #f5f7fa;
+    --white: #ffffff;
+    --text: #17283b;
+    --muted: #667589;
+    --line: #dce4ed;
+    --yellow: #ffd66b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+.brand {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    color: var(--navy) !important;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    text-decoration: none;
+}
+
+.brand span {
+    color: var(--orange);
+}
+
+.footer-brand {
+    color: var(--white) !important;
+}
+
+.nav-link {
+    color: var(--navy) !important;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: var(--orange) !important;
+}
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero {
+    overflow: hidden;
+    padding: 6.5rem 0 5rem;
+    color: var(--white);
+    background:
+        linear-gradient(
+            115deg,
+            var(--navy) 0 62%,
+            #183a60 62%
+        );
+}
+
+.eyebrow {
+    color: var(--orange);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 0.94;
+    letter-spacing: -0.07em;
+}
+
+.hero h1 span {
+    color: var(--yellow);
+}
+
+.hero p {
+    max-width: 550px;
+    color: #cbd7e5;
+    font-size: 1.1rem;
+}
+
+.btn-orange {
+    display: inline-block;
+    padding: 0.8rem 1.25rem;
+    border: 0;
+    border-radius: 10px;
+    color: var(--navy);
+    background: var(--orange);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.btn-orange:hover {
+    color: var(--navy);
+    background: #ff9b5c;
+}
+
+.btn-outline-light {
+    display: inline-block;
+    padding: 0.75rem 1.2rem;
+    border: 1px solid var(--white);
+    border-radius: 10px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.btn-outline-light:hover {
+    color: var(--navy);
+    background: var(--white);
+}
+
+.truck-art {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: var(--blue);
+    box-shadow: 14px 14px 0 var(--orange);
+    transform: rotate(2deg);
+}
+
+.truck-art::before {
+    position: absolute;
+    top: 30px;
+    right: -20px;
+    color: rgba(255, 255, 255, 0.12);
+    content: 'CARGO';
+    font: 700 5rem 'Space Grotesk';
+    transform: rotate(90deg);
+}
+
+.truck {
+    position: absolute;
+    bottom: 64px;
+    left: 12%;
+    width: 72%;
+    height: 100px;
+    border-radius: 12px 25px 10px 10px;
+    background: var(--yellow);
+}
+
+.truck::before {
+    position: absolute;
+    right: -26%;
+    bottom: 0;
+    width: 30%;
+    height: 72px;
+    border-radius: 5px 20px 10px 5px;
+    background: var(--orange);
+    content: '';
+}
+
+.truck::after {
+    position: absolute;
+    bottom: -35px;
+    left: 18px;
+    color: var(--navy);
+    content: '●   ●';
+    font-size: 2.1rem;
+    letter-spacing: 72px;
+}
+
+.section {
+    padding: 5rem 0;
+}
+
+.section-title {
+    color: var(--navy);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    letter-spacing: -0.06em;
+}
+
+.cardx {
+    height: 100%;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--white);
+    transition: 0.25s;
+}
+
+.cardx:hover {
+    box-shadow: 0 12px 30px #10253f18;
+    transform: translateY(-6px);
+}
+
+.icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 14px;
+    color: var(--blue);
+    background: #e6f0ff;
+    font-size: 1.4rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    color: #9b510f;
+    background: #fff0d9;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.price {
+    color: var(--navy);
+    font: 700 2rem 'Space Grotesk';
+}
+
+.form-control,
+.form-select {
+    padding: 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 0.2rem rgba(38, 116, 217, 0.15);
+}
+
+.table {
+    --bs-table-bg: transparent;
+}
+
+.table thead {
+    color: var(--white);
+    background: var(--navy);
+}
+
+.table > :not(caption) > * > * {
+    padding: 1rem;
+}
+
+.footer {
+    padding: 3rem 0;
+    color: var(--white);
+    background: var(--navy);
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.footer .muted {
+    color: #aabbd0;
+}
+
+.page-head {
+    padding: 5rem 0 2rem;
+    background: var(--white);
+}
+
+@media (max-width: 767px) {
+    .hero {
+        padding: 4.5rem 0 3.5rem;
+        background: var(--navy);
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+
+    .truck-art {
+        height: 240px;
+        margin-top: 2rem;
+    }
+
+    .truck-art::before {
+        font-size: 3rem;
+    }
+
+    .section {
+        padding: 3.5rem 0;
+    }
+
+    .main-navigation {
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        margin-top: 1rem;
+    }
+
+    .main-navigation .nav-link {
+        padding: 0.25rem 0;
+    }
+
+    .table {
+        min-width: 650px;
+    }
+}
