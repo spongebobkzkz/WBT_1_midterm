@@ -19,6 +19,7 @@
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quote.css">
 </head>
 
 <body>
@@ -87,26 +88,29 @@
                 </h1>
 
                 <p class="text-secondary">
-                    Complete the form and our logistics specialist will prepare
-                    an estimate.
+                    Fill in the route and the weight: you see the price for air,
+                    rail and road at once. Choose one and send the request.
                 </p>
             </div>
         </section>
 
         <section class="section pt-3">
             <div class="container">
-                <div class="row">
+                <div class="row g-4">
 
                     <div class="col-lg-8">
-                        <form class="cardx" action="#" method="post">
+                        <form class="cardx" id="quoteForm" novalidate>
 
                             <div class="row g-3">
 
-                                <div class="col-md-6">
-                                    <label
-                                        class="form-label"
-                                        for="customerName"
-                                    >
+                                <div class="col-12">
+                                    <h2 class="h4 mb-0">
+                                        Your contacts
+                                    </h2>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label" for="customerName">
                                         Your name
                                     </label>
 
@@ -115,102 +119,93 @@
                                         type="text"
                                         id="customerName"
                                         name="customerName"
-                                        placeholder="Name"
-                                        required
+                                        autocomplete="name"
+                                        placeholder="Daniyar Akhmetov"
                                     >
+
+                                    <div class="invalid-feedback"></div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label
-                                        class="form-label"
-                                        for="contact"
-                                    >
-                                        Phone or email
+                                <div class="col-md-4">
+                                    <label class="form-label" for="customerEmail">
+                                        Email
                                     </label>
 
                                     <input
                                         class="form-control"
-                                        type="text"
-                                        id="contact"
-                                        name="contact"
-                                        placeholder="Contact"
-                                        required
+                                        type="email"
+                                        id="customerEmail"
+                                        name="customerEmail"
+                                        autocomplete="email"
+                                        placeholder="name@company.kz"
                                     >
+
+                                    <div class="invalid-feedback"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label" for="customerPhone">
+                                        Phone
+                                    </label>
+
+                                    <input
+                                        class="form-control"
+                                        type="tel"
+                                        id="customerPhone"
+                                        name="customerPhone"
+                                        autocomplete="tel"
+                                        placeholder="+7 777 123 45 67"
+                                    >
+
+                                    <div class="invalid-feedback"></div>
+                                </div>
+
+                                <div class="col-12">
+                                    <h2 class="h4 mb-0 mt-2">
+                                        Your cargo
+                                    </h2>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label
-                                        class="form-label"
-                                        for="from"
-                                    >
+                                    <label class="form-label" for="from">
                                         From
                                     </label>
 
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        id="from"
-                                        name="from"
-                                        placeholder="City or country"
-                                        required
-                                    >
+                                    <select class="form-select" id="from" name="from">
+                                        <option value="">Choose a city</option>
+                                    </select>
+
+                                    <div class="invalid-feedback"></div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label
-                                        class="form-label"
-                                        for="to"
-                                    >
+                                    <label class="form-label" for="to">
                                         To
                                     </label>
 
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        id="to"
-                                        name="to"
-                                        placeholder="City or country"
-                                        required
-                                    >
+                                    <select class="form-select" id="to" name="to">
+                                        <option value="">Choose a city</option>
+                                    </select>
+
+                                    <div class="invalid-feedback"></div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label
-                                        class="form-label"
-                                        for="cargoType"
-                                    >
+                                <div class="col-md-4">
+                                    <label class="form-label" for="cargoType">
                                         Cargo type
                                     </label>
 
-                                    <select
-                                        class="form-select"
-                                        id="cargoType"
-                                        name="cargoType"
-                                    >
-                                        <option>
-                                            Commercial goods
-                                        </option>
-
-                                        <option>
-                                            Personal parcel
-                                        </option>
-
-                                        <option>
-                                            Electronics
-                                        </option>
-
-                                        <option>
-                                            Fragile goods
-                                        </option>
+                                    <select class="form-select" id="cargoType" name="cargoType">
+                                        <option value="commercial">Commercial goods</option>
+                                        <option value="personal">Personal parcel</option>
+                                        <option value="electronics">Electronics</option>
+                                        <option value="fragile">Fragile goods</option>
                                     </select>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label
-                                        class="form-label"
-                                        for="weight"
-                                    >
-                                        Approximate weight
+                                <div class="col-md-4">
+                                    <label class="form-label" for="weight">
+                                        Weight, kg
                                     </label>
 
                                     <input
@@ -219,32 +214,59 @@
                                         id="weight"
                                         name="weight"
                                         min="1"
-                                        placeholder="kg"
+                                        max="20000"
+                                        placeholder="1 – 20000"
                                     >
+
+                                    <div class="invalid-feedback"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label" for="shipDate">
+                                        Ready to ship on
+                                    </label>
+
+                                    <input
+                                        class="form-control"
+                                        type="date"
+                                        id="shipDate"
+                                        name="shipDate"
+                                    >
+
+                                    <div class="invalid-feedback"></div>
                                 </div>
 
                                 <div class="col-12">
-                                    <label
-                                        class="form-label"
-                                        for="details"
-                                    >
-                                        Additional details
+                                    <fieldset>
+                                        <legend class="form-label fs-6">
+                                            Transport (prices update as you type)
+                                        </legend>
+
+                                        <div class="mode-grid" id="modeOptions"></div>
+
+                                        <div class="invalid-feedback d-block" id="modeError"></div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label" for="details">
+                                        Additional details (optional)
                                     </label>
 
                                     <textarea
                                         class="form-control"
                                         id="details"
                                         name="details"
-                                        rows="4"
+                                        rows="3"
+                                        maxlength="500"
                                         placeholder="Dimensions, deadline, special requirements..."
                                     ></textarea>
+
+                                    <div class="form-text" id="detailsCount">0 / 500</div>
                                 </div>
 
                                 <div class="col-12">
-                                    <button
-                                        class="btn btn-orange"
-                                        type="submit"
-                                    >
+                                    <button class="btn btn-orange" type="submit">
                                         Request estimate →
                                     </button>
                                 </div>
@@ -252,6 +274,23 @@
                             </div>
 
                         </form>
+
+                        <div class="success-box mt-4" id="quoteSuccess" role="status" tabindex="-1"></div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <aside class="cardx no-lift">
+                            <h2 class="h4">
+                                How we count the price
+                            </h2>
+
+                            <ul class="quote-rules">
+                                <li>Price = weight × price per kg of the transport.</li>
+                                <li>Routes from China and Turkey cost more than routes inside Central Asia.</li>
+                                <li>Electronics +15%, fragile goods +25% for careful handling.</li>
+                                <li>The manager confirms the final price within one working day.</li>
+                            </ul>
+                        </aside>
                     </div>
 
                 </div>
@@ -293,6 +332,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/quote.js"></script>
 
 </body>
 </html>

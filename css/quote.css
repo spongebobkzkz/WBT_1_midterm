@@ -1,0 +1,96 @@
+/* Get a quote page (Estai Beisenbai) */
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Three transport cards that work as radio buttons */
+.mode-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.mode-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1rem 1rem 1rem 2.75rem;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    background: var(--white);
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+
+.mode-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-3px);
+}
+
+.mode-card input {
+    position: absolute;
+    top: 1.15rem;
+    left: 1rem;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--navy);
+}
+
+/* :has() colours the whole card when its radio is checked */
+.mode-card:has(input:checked) {
+    border-color: var(--navy);
+    background: #eef4fc;
+}
+
+.mode-card:has(input:focus-visible) {
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+}
+
+.mode-card.off {
+    border-style: dashed;
+    color: var(--muted);
+    background: var(--cream);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.mode-name {
+    color: var(--navy);
+    font-weight: 700;
+}
+
+.mode-price {
+    color: var(--navy);
+    font: 700 1.3rem 'Space Grotesk', sans-serif;
+}
+
+.mode-card.off .mode-price {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.mode-days {
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.quote-rules {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+}
+
+.quote-rules li {
+    margin-bottom: 0.6rem;
+}
+
+@media (min-width: 768px) {
+    .mode-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
