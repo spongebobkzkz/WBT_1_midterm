@@ -350,13 +350,22 @@ form.cardx {
 .form-select.is-invalid {
     border-color: var(--error);
     background-color: var(--error-bg);
-    background-image: none;
 }
 
 .form-control.is-valid,
 .form-select.is-valid {
     border-color: var(--success);
+}
+
+/* No Bootstrap icons inside the fields, but keep the arrow of the select */
+.form-control.is-invalid,
+.form-control.is-valid {
     background-image: none;
+}
+
+.form-select.is-invalid,
+.form-select.is-valid {
+    --bs-form-select-bg-icon: none;
 }
 
 .form-check-input.is-invalid {
