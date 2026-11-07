@@ -1,0 +1,226 @@
+/* Tracking page (Estai Beisenbai) */
+
+.track-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 520px;
+    margin-top: 1.5rem;
+}
+
+.track-form .form-control {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.track-form .btn-orange {
+    flex-shrink: 0;
+}
+
+.track-error {
+    min-height: 1.5rem;
+    margin: 0.5rem 0 0;
+    color: var(--error);
+    font-weight: 500;
+}
+
+/* ===== Result card ===== */
+
+.result-card {
+    padding: 1.75rem;
+    border-radius: 22px;
+    color: var(--white);
+    background: var(--navy);
+    box-shadow: 12px 12px 0 var(--orange);
+}
+
+.result-card h2 {
+    color: var(--white);
+}
+
+.result-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.status-tag {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    color: var(--navy);
+    background: var(--yellow);
+    font-weight: 700;
+}
+
+/* The road with the moving truck: the memorable part of this page */
+.road {
+    position: relative;
+    height: 14px;
+    margin: 2.5rem 0 1rem;
+    border-radius: 999px;
+    background: repeating-linear-gradient(90deg, #2d4566 0 18px, #1b3150 18px 30px);
+}
+
+.road-done {
+    position: relative;
+    width: 0;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--orange);
+}
+
+.road-truck {
+    position: absolute;
+    top: -22px;
+    right: -18px;
+    width: 36px;
+    height: 20px;
+    border-radius: 4px 8px 3px 3px;
+    background: var(--yellow);
+}
+
+.road-truck::after {
+    position: absolute;
+    right: -12px;
+    bottom: 0;
+    width: 12px;
+    height: 14px;
+    border-radius: 2px 6px 3px 2px;
+    background: var(--orange);
+    content: '';
+}
+
+.result-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    list-style: none;
+    color: #8ea2bb;
+    font-size: 0.85rem;
+}
+
+.result-steps li::before {
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-bottom: 0.35rem;
+    border: 2px solid #8ea2bb;
+    border-radius: 50%;
+    content: '';
+}
+
+.result-steps .done {
+    color: var(--white);
+}
+
+.result-steps .done::before {
+    border-color: var(--orange);
+    background: var(--orange);
+}
+
+.result-steps .now {
+    color: var(--yellow);
+    font-weight: 700;
+}
+
+.result-steps .now::before {
+    border-color: var(--yellow);
+    box-shadow: 0 0 0 4px rgba(255, 214, 107, 0.25);
+}
+
+/* ===== Table ===== */
+
+.track-table {
+    overflow: hidden;
+    border-radius: 14px;
+    background: var(--white);
+}
+
+.track-table tbody tr {
+    transition: background 0.2s;
+}
+
+.track-table tbody tr:hover {
+    background: #fff6ee;
+}
+
+.code-button {
+    padding: 0;
+    border: 0;
+    color: var(--blue);
+    background: none;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.code-button:hover {
+    color: var(--orange);
+}
+
+/* On a phone every row becomes a small card, so there is no side scroll. */
+@media (max-width: 767px) {
+    .track-form .btn-orange {
+        padding-right: 0.9rem;
+        padding-left: 0.9rem;
+    }
+
+    .result-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .result-steps li {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .result-steps li::before {
+        margin-bottom: 0;
+    }
+
+    .track-table thead {
+        display: none;
+    }
+
+    .track-table,
+    .track-table tbody,
+    .track-table tr,
+    .track-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .track-table tr {
+        margin-bottom: 0.75rem;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--white);
+    }
+
+    .track-table > :not(caption) > * > * {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.6rem 1rem;
+        text-align: right;
+    }
+
+    .track-table td::before {
+        color: var(--muted);
+        content: attr(data-label);
+        text-align: left;
+    }
+
+    .track-table td[colspan]::before {
+        content: none;
+    }
+}
+
+#statusFilter {
+    min-width: 200px;
+}

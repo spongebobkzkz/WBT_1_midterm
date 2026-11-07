@@ -19,6 +19,7 @@
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tracking.css">
 </head>
 
 <body>
@@ -87,113 +88,90 @@
                 </h1>
 
                 <p class="text-secondary">
-                    Use the sample tracking codes below to understand the
-                    shipment journey.
+                    Write your tracking code and press Enter. Try one of our
+                    sample codes, for example <strong>CP-2048-KZ</strong>.
                 </p>
+
+                <form class="track-form" id="trackForm" novalidate>
+                    <label class="visually-hidden" for="trackCode">
+                        Tracking code
+                    </label>
+
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="trackCode"
+                        placeholder="CP-0000-KZ"
+                        autocomplete="off"
+                        maxlength="20"
+                    >
+
+                    <button class="btn btn-orange" type="submit">
+                        Track →
+                    </button>
+                </form>
+
+                <p class="track-error" id="trackError" role="alert"></p>
             </div>
         </section>
 
-        <section class="section pt-3">
+        <!-- The result card, made by js/tracking.js -->
+        <section class="section pt-4 pb-0">
+            <div class="container">
+                <div class="track-result" id="trackResult" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section class="section">
             <div class="container">
 
-                <div class="table-responsive">
-                    <table class="table align-middle">
+                <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-3">
+                    <div>
+                        <h2 class="h3 mb-1">
+                            Sample shipments this week
+                        </h2>
 
-                        <caption class="visually-hidden">
-                            Sample cargo shipment statuses
-                        </caption>
+                        <p class="text-secondary mb-0" id="shipmentStats"></p>
+                    </div>
 
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    Tracking code
-                                </th>
+                    <div>
+                        <label class="form-label" for="statusFilter">
+                            Show
+                        </label>
 
-                                <th scope="col">
-                                    Route
-                                </th>
-
-                                <th scope="col">
-                                    Last update
-                                </th>
-
-                                <th scope="col">
-                                    Status
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <strong>CP-2048-KZ</strong>
-                                </td>
-
-                                <td>
-                                    Guangzhou → Astana
-                                </td>
-
-                                <td>
-                                    Warehouse 3, Almaty
-                                </td>
-
-                                <td>
-                                    <span class="tag">
-                                        In transit
-                                    </span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <strong>CP-1932-KZ</strong>
-                                </td>
-
-                                <td>
-                                    Yiwu → Karaganda
-                                </td>
-
-                                <td>
-                                    Customs clearance
-                                </td>
-
-                                <td>
-                                    <span class="tag">
-                                        Processing
-                                    </span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <strong>CP-1870-KZ</strong>
-                                </td>
-
-                                <td>
-                                    Urumqi → Shymkent
-                                </td>
-
-                                <td>
-                                    Delivered today
-                                </td>
-
-                                <td>
-                                    <span class="tag">
-                                        Completed
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table>
+                        <select class="form-select" id="statusFilter">
+                            <option value="all">All statuses</option>
+                            <option value="Processing">Processing</option>
+                            <option value="In transit">In transit</option>
+                            <option value="Customs">Customs</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                    </div>
                 </div>
+
+                <table class="table align-middle track-table">
+                    <caption class="visually-hidden">
+                        Sample cargo shipment statuses
+                    </caption>
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Tracking code</th>
+                            <th scope="col">Route</th>
+                            <th scope="col">Last update</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="shipmentRows"></tbody>
+                </table>
 
             </div>
         </section>
 
         <section class="section pt-0">
             <div class="container">
-                <div class="cardx">
+                <div class="cardx no-lift">
                     <h2 class="h4">
                         How long does delivery take?
                     </h2>
@@ -201,7 +179,8 @@
                     <p class="text-secondary mb-0">
                         Typical delivery time depends on the route and
                         selected transport. Our manager confirms the exact
-                        estimate before dispatch.
+                        estimate before dispatch. Need a price first?
+                        <a href="quote.html">Get a quote</a>.
                     </p>
                 </div>
             </div>
@@ -242,6 +221,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/tracking.js"></script>
 
 </body>
 </html>
