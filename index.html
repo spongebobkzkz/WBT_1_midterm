@@ -19,6 +19,7 @@
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
@@ -106,6 +107,10 @@
                             >
                                 Track a shipment
                             </a>
+
+                            <a class="btn hero-link js-scroll" href="#faq">
+                                Questions ↓
+                            </a>
                         </div>
                     </div>
 
@@ -182,6 +187,65 @@
             </div>
         </section>
 
+        <!-- Numbers that count up (js/home.js) -->
+        <section class="stats" aria-labelledby="statsTitle">
+            <div class="container">
+                <h2 class="visually-hidden" id="statsTitle">
+                    Cargo/Pulse in numbers
+                </h2>
+
+                <div class="stats-grid">
+                    <div class="stat">
+                        <span class="stat-number" data-target="12480">0</span>
+                        <span class="stat-label">parcels delivered in 2026</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="stat-number" data-target="38">0</span>
+                        <span class="stat-label">cities on our routes</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="stat-number" data-target="97">0</span>
+                        <span class="stat-label">% arrive on time</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="stat-number" data-target="4">0</span>
+                        <span class="stat-label">ways to ship: air, rail, road, city</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Questions: a jQuery accordion (js/home.js) -->
+        <section class="section" id="faq">
+            <div class="container">
+                <div class="row g-4">
+
+                    <div class="col-lg-4">
+                        <div class="eyebrow mb-2">
+                            Questions
+                        </div>
+
+                        <h2 class="section-title">
+                            Before you ship.
+                        </h2>
+
+                        <p class="text-secondary">
+                            Short answers to what new clients ask us most.
+                            Still not sure? <a href="quote.html">Ask for a quote</a>.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="faq" id="faqList"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -217,6 +281,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
 
 </body>
 </html>

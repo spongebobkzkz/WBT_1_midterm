@@ -1,0 +1,117 @@
+/* Home page (Estai Beisenbai) */
+
+.hero-link {
+    color: var(--yellow);
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.hero-link:hover {
+    color: var(--orange);
+}
+
+/* ===== Numbers ===== */
+
+.stats {
+    padding: 3rem 0;
+    color: var(--white);
+    background: var(--blue);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    color: var(--yellow);
+    font: 700 clamp(2.2rem, 6vw, 3.5rem) 'Space Grotesk', sans-serif;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.stat-label {
+    margin-top: 0.4rem;
+    color: #e6f0ff;
+}
+
+/* ===== Questions (accordion) ===== */
+
+.faq-item {
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--white);
+    transition: border-color 0.2s;
+}
+
+.faq-item:hover {
+    border-color: var(--orange);
+}
+
+.faq-item h3 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 0;
+    color: var(--navy);
+    background: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    text-align: left;
+}
+
+.faq-topic {
+    flex-shrink: 0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    color: var(--blue);
+    background: #e6f0ff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.faq-sign {
+    margin-left: auto;
+    color: var(--orange);
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.25s;
+}
+
+.faq-question[aria-expanded="true"] .faq-sign {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 1.25rem 0.25rem;
+    color: var(--muted);
+}
+
+@media (min-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 575px) {
+    .faq-topic {
+        display: none;
+    }
+}
