@@ -19,6 +19,7 @@
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/services.css">
 </head>
 
 <body>
@@ -87,92 +88,52 @@
                 </h1>
 
                 <p class="text-secondary">
-                    Choose a delivery format depending on your cargo,
-                    deadline and budget.
+                    Choose a delivery format depending on your cargo, deadline
+                    and budget. Tick “Compare” on up to three services to see
+                    them side by side.
                 </p>
             </div>
         </section>
 
         <section class="section pt-3">
             <div class="container">
-                <div class="row g-4">
 
-                    <div class="col-md-4">
-                        <article class="cardx">
-                            <span class="tag">
-                                Popular
-                            </span>
-
-                            <h2 class="h3 mt-4">
-                                Air cargo
-                            </h2>
-
-                            <p class="text-secondary">
-                                For urgent, compact shipments that need to
-                                arrive quickly.
-                            </p>
-
-                            <div class="price mt-4">
-                                From 2,900 ₸
-                            </div>
-
-                            <small class="text-secondary">
-                                per kg
-                            </small>
-                        </article>
-                    </div>
-
-                    <div class="col-md-4">
-                        <article class="cardx">
-                            <span class="tag">
-                                Balanced
-                            </span>
-
-                            <h2 class="h3 mt-4">
-                                Rail cargo
-                            </h2>
-
-                            <p class="text-secondary">
-                                A reliable solution for medium-sized
-                                commercial shipments.
-                            </p>
-
-                            <div class="price mt-4">
-                                From 1,200 ₸
-                            </div>
-
-                            <small class="text-secondary">
-                                per kg
-                            </small>
-                        </article>
-                    </div>
-
-                    <div class="col-md-4">
-                        <article class="cardx">
-                            <span class="tag">
-                                Economy
-                            </span>
-
-                            <h2 class="h3 mt-4">
-                                Road cargo
-                            </h2>
-
-                            <p class="text-secondary">
-                                Flexible delivery for large or non-urgent
-                                goods.
-                            </p>
-
-                            <div class="price mt-4">
-                                From 850 ₸
-                            </div>
-
-                            <small class="text-secondary">
-                                per kg
-                            </small>
-                        </article>
-                    </div>
-
+                <div
+                    class="d-flex flex-wrap gap-2 mb-4"
+                    id="typeFilter"
+                    role="group"
+                    aria-label="Show services"
+                >
+                    <button class="btn-soft selected" type="button" data-type="all">All services</button>
+                    <button class="btn-soft" type="button" data-type="transport">Transport</button>
+                    <button class="btn-soft" type="button" data-type="extra">Extra services</button>
                 </div>
+
+                <!-- Cards are made by js/services.js from an array -->
+                <div class="row g-4" id="serviceList"></div>
+
+            </div>
+        </section>
+
+        <!-- Comparison panel -->
+        <div class="compare-bar" id="compareBar" aria-live="polite">
+            <div class="container">
+                <div class="compare-inner">
+                    <p class="mb-0" id="compareText"></p>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn-soft" type="button" id="clearCompare">Clear</button>
+                        <button class="btn btn-orange" type="button" id="showCompare">Compare</button>
+                    </div>
+                </div>
+
+                <p class="compare-error mb-0" id="compareError" role="alert"></p>
+            </div>
+        </div>
+
+        <section class="section pt-0" id="compareSection">
+            <div class="container">
+                <div class="compare-box" id="compareBox"></div>
             </div>
         </section>
 
@@ -211,6 +172,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/services.js"></script>
 
 </body>
 </html>
