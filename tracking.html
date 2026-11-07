@@ -16,34 +16,58 @@
         rel="stylesheet"
     >
 
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <nav class="navbar sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
         <div class="container py-2">
 
             <a class="navbar-brand brand" href="index.html">
                 CARGO<span>/</span>PULSE
             </a>
 
-            <div class="main-navigation">
-                <a class="nav-link" href="index.html">
-                    Home
-                </a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNav"
+                aria-controls="mainNav"
+                aria-expanded="false"
+                aria-label="Open the menu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <a class="nav-link" href="services.html">
-                    Services
-                </a>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <div class="navbar-nav ms-auto main-navigation">
+                    <a class="nav-link" href="index.html">
+                        Home
+                    </a>
 
-                <a class="nav-link" href="tracking.html">
-                    Tracking
-                </a>
+                    <a class="nav-link" href="services.html">
+                        Services
+                    </a>
 
-                <a class="nav-link" href="quote.html">
-                    Get a quote
-                </a>
+                    <a class="nav-link active" href="tracking.html" aria-current="page">
+                        Tracking
+                    </a>
+
+                    <a class="nav-link" href="quote.html">
+                        Get a quote
+                    </a>
+
+                    <a class="nav-link" href="pickup.html">
+                        Pickup
+                    </a>
+
+                    <a class="nav-link" href="shop.html">
+                        Packing shop
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -186,24 +210,38 @@
     </main>
 
     <footer class="footer">
-        <div
-            class="container d-flex flex-column flex-md-row justify-content-between gap-3"
-        >
-            <div>
-                <div class="brand footer-brand">
-                    CARGO<span>/</span>PULSE
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+                <div>
+                    <div class="brand footer-brand">
+                        CARGO<span>/</span>PULSE
+                    </div>
+
+                    <div class="muted mt-2">
+                        Clear logistics for growing businesses.
+                    </div>
                 </div>
 
-                <div class="muted mt-2">
-                    Clear logistics for growing businesses.
+                <div class="muted">
+                    © 2026 Cargo/Pulse, Kazakhstan
                 </div>
             </div>
 
-            <div class="muted">
-                © 2026 Cargo/Pulse, Kazakhstan
-            </div>
+            <p class="credits muted mb-0">
+                Credits: layout and components with Bootstrap 5.3, effects with
+                jQuery 3.7, fonts Space Grotesk and DM Sans from Google Fonts.
+                The truck, boxes and icons are drawn by our team with CSS and SVG.
+                Parts of the code were written with help from the AI assistant
+                Claude (Anthropic) and checked by us.
+            </p>
         </div>
     </footer>
+
+    <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
