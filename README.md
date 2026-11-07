@@ -32,4 +32,4 @@ Website: https://spongebobkzkz.github.io/WBT_1_midterm/
 - Bootstrap 5.3 (layout, navbar, form components), jQuery 3.7 (effects and animations)
 - Fonts: Space Grotesk and DM Sans from Google Fonts
 - The truck, boxes and icons are drawn by our team with CSS and SVG
-- Parts of the code were written with help from the AI assistant Claude (Anthropic) and checked by us
+- Most of the new JavaScript and CSS was written with the AI assistant Claude (Anthropic); we tested every feature and checked the code
