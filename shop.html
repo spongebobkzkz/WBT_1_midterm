@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta
+        name="description"
+        content="Boxes, bubble wrap and tape from Cargo/Pulse, delivered with your pickup"
+    >
+
+    <title>Packing shop — Cargo/Pulse</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shop.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
+        <div class="container py-2">
+
+            <a class="navbar-brand brand" href="index.html">
+                CARGO<span>/</span>PULSE
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNav"
+                aria-controls="mainNav"
+                aria-expanded="false"
+                aria-label="Open the menu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <div class="navbar-nav ms-auto main-navigation">
+                    <a class="nav-link" href="index.html">
+                        Home
+                    </a>
+
+                    <a class="nav-link" href="services.html">
+                        Services
+                    </a>
+
+                    <a class="nav-link" href="tracking.html">
+                        Tracking
+                    </a>
+
+                    <a class="nav-link" href="quote.html">
+                        Get a quote
+                    </a>
+
+                    <a class="nav-link" href="pickup.html">
+                        Pickup
+                    </a>
+
+                    <a class="nav-link active" href="shop.html" aria-current="page">
+                        Packing shop
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="page-head">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-8">
+                        <div class="eyebrow">
+                            Packing shop
+                        </div>
+
+                        <h1 class="section-title">
+                            Pack it right.<br>
+                            Ship it safe.
+                        </h1>
+
+                        <p class="text-secondary mb-0">
+                            Boxes, bubble wrap and tape at warehouse prices. Our
+                            driver brings them with your pickup, so you pack and
+                            send in one visit.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 d-none d-md-block">
+                        <img
+                            class="head-box"
+                            src="images/box.svg"
+                            alt="Drawing of an orange cardboard box"
+                            width="240"
+                            height="200"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Box finder -->
+        <section class="section pb-0">
+            <div class="container">
+                <form class="finder" id="finderForm" novalidate>
+                    <div class="finder-text">
+                        <h2 class="h3">
+                            Which box do I need?
+                        </h2>
+
+                        <p class="mb-0">
+                            Write the size of your item. We find the smallest box
+                            that fits and show the weight we charge for.
+                        </p>
+                    </div>
+
+                    <div class="finder-fields">
+                        <div>
+                            <label class="form-label" for="itemLength">Length, cm</label>
+                            <input class="form-control" type="number" id="itemLength" min="1" placeholder="35">
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="itemWidth">Width, cm</label>
+                            <input class="form-control" type="number" id="itemWidth" min="1" placeholder="25">
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="itemHeight">Height, cm</label>
+                            <input class="form-control" type="number" id="itemHeight" min="1" placeholder="20">
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="itemWeight">Weight, kg</label>
+                            <input class="form-control" type="number" id="itemWeight" min="0.1" step="0.1" placeholder="4">
+                        </div>
+
+                        <button class="btn btn-orange" type="submit">
+                            Find my box
+                        </button>
+                    </div>
+
+                    <div class="finder-error" id="finderError" role="alert"></div>
+                    <div class="finder-result" id="finderResult" aria-live="polite"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Catalogue and cart -->
+        <section class="section">
+            <div class="container">
+                <div class="row g-4">
+
+                    <div class="col-lg-8">
+                        <h2 class="h3">
+                            All supplies
+                        </h2>
+
+                        <div class="shop-tools">
+                            <div class="shop-search">
+                                <label class="visually-hidden" for="shopSearch">Search supplies</label>
+                                <input
+                                    class="form-control"
+                                    type="search"
+                                    id="shopSearch"
+                                    placeholder="Search: box, tape, fragile..."
+                                >
+                            </div>
+
+                            <div>
+                                <label class="visually-hidden" for="shopSort">Sort by</label>
+                                <select class="form-select" id="shopSort">
+                                    <option value="default">Recommended</option>
+                                    <option value="cheap">Price: low to high</option>
+                                    <option value="expensive">Price: high to low</option>
+                                    <option value="name">Name: A to Z</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div
+                            class="d-flex flex-wrap gap-2 mb-3"
+                            id="categoryFilter"
+                            role="group"
+                            aria-label="Category"
+                        >
+                            <button class="btn-soft selected" type="button" data-category="all">All</button>
+                            <button class="btn-soft" type="button" data-category="boxes">Boxes</button>
+                            <button class="btn-soft" type="button" data-category="protection">Protection</button>
+                            <button class="btn-soft" type="button" data-category="tape">Tape and labels</button>
+                        </div>
+
+                        <p class="shop-count" id="shopCount" aria-live="polite"></p>
+
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3" id="productList"></div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <aside class="cart" aria-labelledby="cartTitle">
+                            <h2 class="h4" id="cartTitle">
+                                Your cart <span class="cart-badge" id="cartCount">0</span>
+                            </h2>
+
+                            <ul class="cart-list" id="cartList"></ul>
+
+                            <div class="free-bar" aria-hidden="true">
+                                <div class="free-bar-fill" id="freeBarFill"></div>
+                            </div>
+
+                            <p class="free-text" id="freeText"></p>
+
+                            <div class="cart-total">
+                                <span>Total</span>
+                                <strong id="cartTotal">0 ₸</strong>
+                            </div>
+
+                            <button class="btn btn-orange w-100 mt-3" type="button" id="checkoutButton">
+                                Bring with my pickup →
+                            </button>
+
+                            <p class="cart-error" id="cartError" role="alert"></p>
+                        </aside>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+                <div>
+                    <div class="brand footer-brand">
+                        CARGO<span>/</span>PULSE
+                    </div>
+
+                    <div class="muted mt-2">
+                        Clear logistics for growing businesses.
+                    </div>
+                </div>
+
+                <div class="muted">
+                    © 2026 Cargo/Pulse, Kazakhstan
+                </div>
+            </div>
+
+            <p class="credits muted mb-0">
+                Credits: layout and components with Bootstrap 5.3, effects with
+                jQuery 3.7, fonts Space Grotesk and DM Sans from Google Fonts.
+                The truck, boxes and icons are drawn by our team with CSS and SVG.
+                Parts of the code were written with help from the AI assistant
+                Claude (Anthropic) and checked by us.
+            </p>
+        </div>
+    </footer>
+
+    <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+
+</body>
+</html>
