@@ -45,10 +45,24 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
-[tabindex]:focus-visible {
+[tabindex]:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.navbar-toggler:focus-visible {
     outline: 3px solid var(--blue);
     outline-offset: 3px;
     box-shadow: none;
+}
+
+/* On the dark hero a yellow ring is easier to see */
+.hero a:focus-visible {
+    outline-color: var(--yellow);
+}
+
+/* Bootstrap changes the button colour on focus; keep our colours */
+.btn-orange:focus-visible {
+    color: var(--navy);
+    background: var(--orange);
 }
 
 /* ===== Navigation ===== */
