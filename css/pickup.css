@@ -1,0 +1,191 @@
+/* Pickup page (Byerdikhajy Yesyentai) */
+
+/* The three steps under the title */
+.pickup-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--navy);
+    font-weight: 500;
+}
+
+.pickup-steps span {
+    display: inline-grid;
+    width: 28px;
+    height: 28px;
+    margin-right: 0.4rem;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--navy);
+    background: var(--yellow);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+}
+
+/* ===== Time windows ===== */
+
+.slot-count {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.slot {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    color: var(--navy);
+    background: var(--white);
+    text-align: left;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+
+.slot:hover:not(:disabled) {
+    border-color: var(--orange);
+    transform: translateY(-3px);
+}
+
+.slot.chosen {
+    border-color: var(--navy);
+    color: var(--white);
+    background: var(--navy);
+}
+
+.slot:disabled {
+    border-style: dashed;
+    color: var(--muted);
+    background: var(--cream);
+    cursor: not-allowed;
+}
+
+.slot-time {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.slot-meta {
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+.slot-note {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--success);
+}
+
+.slot.chosen .slot-note {
+    color: var(--yellow);
+}
+
+.slot:disabled .slot-note {
+    color: var(--error);
+}
+
+.slot-grid .empty-state {
+    grid-column: 1 / -1;
+}
+
+.slot-details {
+    display: none;
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--orange);
+    border-radius: 10px;
+    background: #fff6ee;
+}
+
+/* ===== Price summary: looks like a delivery receipt ===== */
+
+.summary-card {
+    position: sticky;
+    top: 90px;
+    padding: 1.5rem;
+    border-radius: 18px;
+    color: var(--white);
+    background: var(--navy);
+    box-shadow: 10px 10px 0 var(--orange);
+}
+
+.summary-card h2 {
+    color: var(--yellow);
+}
+
+.summary-list {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem 1rem;
+    margin: 1.25rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.summary-list dt {
+    font-weight: 400;
+    color: #cbd7e5;
+}
+
+.summary-list dd {
+    margin: 0;
+    text-align: right;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.summary-total strong {
+    color: var(--yellow);
+    font-size: 2rem;
+}
+
+.summary-note {
+    margin-top: 0.75rem;
+    color: #aabbd0;
+    font-size: 0.85rem;
+}
+
+/* ===== Tips ===== */
+
+.pickup-tips {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+}
+
+.pickup-tips li {
+    margin-bottom: 0.6rem;
+}
+
+.pickup-tips a {
+    color: var(--blue);
+    font-weight: 500;
+}
+
+@media (max-width: 575px) {
+    .slot-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 991px) {
+    .summary-card {
+        position: static;
+        margin-right: 10px;
+    }
+}

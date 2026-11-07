@@ -295,6 +295,11 @@ form.cardx:hover,
     transform: none;
 }
 
+/* A form is only as tall as its fields (no empty space under the button) */
+form.cardx {
+    height: auto;
+}
+
 .icon {
     display: grid;
     width: 48px;
