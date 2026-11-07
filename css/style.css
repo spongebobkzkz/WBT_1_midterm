@@ -60,9 +60,16 @@ textarea:focus-visible,
 }
 
 /* Bootstrap changes the button colour on focus; keep our colours */
-.btn-orange:focus-visible {
-    color: var(--navy);
-    background: var(--orange);
+.btn-orange:focus-visible,
+.btn-orange:active {
+    color: var(--navy) !important;
+    background: var(--orange) !important;
+}
+
+.btn-outline-light:focus-visible,
+.btn-outline-light:active {
+    color: var(--white) !important;
+    background: transparent !important;
 }
 
 /* ===== Navigation ===== */
