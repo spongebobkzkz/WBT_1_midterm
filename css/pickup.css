@@ -160,6 +160,21 @@
     font-size: 0.85rem;
 }
 
+.summary-note a,
+.link-button {
+    padding: 0;
+    border: 0;
+    color: var(--yellow);
+    background: none;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.link-button:hover,
+.summary-note a:hover {
+    color: var(--orange);
+}
+
 /* ===== Tips ===== */
 
 .pickup-tips {

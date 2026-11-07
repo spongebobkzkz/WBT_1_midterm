@@ -27,6 +27,16 @@ const PRICE_PER_KG = 40;        // every kg after the free 50 kg
 let selectedSlotId = "";
 let currentPeriod = "all";
 
+// Packing supplies from the shop page: { count, total } or null.
+let supplies = null;
+
+function loadSupplies() {
+    const saved = localStorage.getItem("cargoPulseSupplies");
+    if (saved !== null) {
+        supplies = JSON.parse(saved);
+    }
+}
+
 // ---------- Small helpers ----------
 
 // 12500 -> "12,500 ₸"
@@ -179,6 +189,11 @@ function calculatePrice() {
         rows.push([slot.vehicle + ", " + slot.time, slot.fee]);
     }
 
+    if (supplies !== null) {
+        total = total + supplies.total;
+        rows.push(["Packing supplies (" + supplies.count + " items)", supplies.total]);
+    }
+
     return { rows: rows, total: total };
 }
 
@@ -193,6 +208,15 @@ function updateSummary() {
     }
 
     $("#summaryTotal").text(formatPrice(price.total));
+
+    if (supplies !== null) {
+        $("#suppliesNote").html(
+            "The driver brings your packing supplies. " +
+            '<button class="link-button" type="button" id="removeSupplies">Remove them</button>'
+        );
+    } else {
+        $("#suppliesNote").html('Need boxes? <a href="shop.html">Order packing supplies</a>.');
+    }
 }
 
 // ---------- 3. Form check ----------
@@ -349,8 +373,15 @@ function toInputDate(date) {
 }
 
 $(function () {
+    loadSupplies();
     renderSlots();
     updateSummary();
+
+    $("#suppliesNote").on("click", "#removeSupplies", function () {
+        localStorage.removeItem("cargoPulseSupplies");
+        supplies = null;
+        updateSummary();
+    });
 
     // The calendar starts from tomorrow.
     const tomorrow = new Date();
@@ -459,6 +490,8 @@ $(function () {
         $("#pickupForm .is-valid, #pickupForm .is-invalid").removeClass("is-valid is-invalid");
         selectedSlotId = "";
         $("#slotDetails").stop(true, true).slideUp(200);
+        localStorage.removeItem("cargoPulseSupplies");   // the supplies are now part of this booking
+        supplies = null;
         renderSlots();
         updateSummary();
     });

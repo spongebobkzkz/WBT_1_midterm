@@ -377,7 +377,10 @@ $(function () {
             $("#cartError").text("Your cart is empty. Add at least one item first.");
             return;
         }
-        localStorage.setItem("cargoPulseCart", JSON.stringify(cart));
+        // Save only what the pickup page needs: how many items and the total.
+        const sums = calculateCart();
+        const order = { count: sums.count, total: sums.total };
+        localStorage.setItem("cargoPulseSupplies", JSON.stringify(order));
         window.location.href = "pickup.html";
     });
 });
