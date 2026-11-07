@@ -224,3 +224,8 @@
 #statusFilter {
     min-width: 200px;
 }
+
+.track-table thead th {
+    color: var(--white);
+    background: var(--navy);
+}
