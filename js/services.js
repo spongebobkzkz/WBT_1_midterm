@@ -1,8 +1,3 @@
-// Services page (Estai Beisenbai)
-// 1. Cards from the "services" array, with a filter (transport / extra).
-// 2. "More" button opens the details of a card (jQuery slideToggle).
-// 3. Compare up to 3 services in a table.
-
 const services = [
     { id: "air", name: "Air cargo", type: "transport", tag: "Fastest", price: 2900, unit: "per kg", days: "2–5 days", maxKg: 500, tracking: "Live", text: "For urgent, compact shipments that need to arrive quickly.", details: "Flights from Guangzhou, Shenzhen, Urumqi and Istanbul to Almaty and Astana. Good for electronics, documents and samples." },
     { id: "rail", name: "Rail cargo", type: "transport", tag: "Balanced", price: 1200, unit: "per kg", days: "10–18 days", maxKg: 20000, tracking: "Every station", text: "A reliable solution for medium-sized commercial shipments.", details: "Containers through Khorgos and Dostyk. A good price for big orders that are not very urgent." },
@@ -33,8 +28,6 @@ function findService(id) {
     }
     return null;
 }
-
-// ---------- 1. Cards ----------
 
 function renderServices() {
     const $list = $("#serviceList");
@@ -71,8 +64,6 @@ function renderServices() {
         $list.append(column);
     }
 }
-
-// ---------- 3. Compare ----------
 
 function updateCompareBar() {
     const count = compareIds.length;
@@ -130,8 +121,6 @@ function showCompareTable() {
     $("html, body").stop().animate({ scrollTop: $("#compareBox").offset().top - 90 }, 600);
 }
 
-// ---------- Events ----------
-
 $(function () {
     renderServices();
 
@@ -142,13 +131,11 @@ $(function () {
         renderServices();
     });
 
-    // 2. More / Less: open the details of one card.
     $("#serviceList").on("click", ".more-button", function () {
         const $button = $(this);
         const $details = $("#details-" + $button.attr("data-id"));
         const isOpen = $details.is(":visible");
 
-        // stop() so fast clicks do not repeat the animation many times.
         $details.stop(true, true).slideToggle(250);
         $button.text(isOpen ? "More" : "Less").attr("aria-expanded", String(!isOpen));
     });

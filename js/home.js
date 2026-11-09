@@ -1,7 +1,3 @@
-// Home page (Estai Beisenbai)
-// 1. Questions: made from the "questions" array, opened like an accordion with jQuery.
-// 2. Numbers: count up from 0 when they come into view.
-
 const questions = [
     { id: "q1", topic: "Price", question: "How do you count the price?", answer: "We multiply the weight by the price per kg of the transport. Routes from China and Turkey cost a bit more. The Get a quote page shows the price at once." },
     { id: "q2", topic: "Time", question: "How long does delivery from China take?", answer: "Air takes 2–5 days, road 7–20 days and rail 10–18 days. The manager confirms the exact date before dispatch." },
@@ -12,8 +8,6 @@ const questions = [
     { id: "q7", topic: "Safety", question: "What happens if something breaks?", answer: "With cargo insurance (1% of the value) we pay back the full value in 10 working days." },
     { id: "q8", topic: "Payment", question: "How can I pay?", answer: "By card, Kaspi transfer or bank transfer for companies. Small pickups can be paid to the driver." }
 ];
-
-// ---------- 1. Questions ----------
 
 function renderQuestions() {
     const $list = $("#faqList");
@@ -33,8 +27,6 @@ function renderQuestions() {
         $list.append(item);
     }
 }
-
-// ---------- 2. Numbers ----------
 
 let numbersDone = false;
 
@@ -56,7 +48,6 @@ function countNumbers() {
         const $number = $(this);
         const target = Number($number.attr("data-target"));
 
-        // jQuery animate() changes "count" from 0 to the target; step() writes it on the page.
         $({ count: 0 }).animate({ count: target }, {
             duration: 1500,
             step: function () {
@@ -69,22 +60,17 @@ function countNumbers() {
     });
 }
 
-// ---------- Events ----------
-
 $(function () {
     renderQuestions();
 
-    // Accordion: open one answer, close the others.
     $("#faqList").on("click", ".faq-question", function () {
         const $button = $(this);
         const $answer = $("#" + $button.attr("aria-controls"));
         const isOpen = $button.attr("aria-expanded") === "true";
 
-        // Close every other answer first.
         $(".faq-question").not($button).attr("aria-expanded", "false");
         $(".faq-answer").not($answer).stop(true, true).slideUp(250);
 
-        // stop(true, true) so fast clicks do not stack animations.
         if (isOpen) {
             $answer.stop(true, true).slideUp(250);
             $button.attr("aria-expanded", "false");

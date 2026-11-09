@@ -1,5 +1,3 @@
-/* Packing shop page (Byerdikhajy Yesyentai) */
-
 .head-box {
     display: block;
     width: 100%;
@@ -8,8 +6,6 @@
     margin-left: auto;
     transform: rotate(-4deg);
 }
-
-/* ===== Box finder: a dark strip like a shipping label ===== */
 
 .finder {
     display: grid;
@@ -77,8 +73,6 @@
     flex: 1 1 180px;
 }
 
-/* ===== Search and sort ===== */
-
 .shop-tools {
     display: grid;
     grid-template-columns: 1fr;
@@ -90,8 +84,6 @@
     color: var(--muted);
     font-size: 0.9rem;
 }
-
-/* ===== Product cards ===== */
 
 .product {
     display: flex;
@@ -146,8 +138,6 @@
     color: var(--navy);
     font: 700 1.25rem 'Space Grotesk', sans-serif;
 }
-
-/* ===== Cart ===== */
 
 .cart {
     position: sticky;

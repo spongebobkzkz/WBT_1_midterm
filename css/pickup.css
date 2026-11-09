@@ -1,6 +1,3 @@
-/* Pickup page (Byerdikhajy Yesyentai) */
-
-/* The three steps under the title */
 .pickup-steps {
     display: flex;
     flex-wrap: wrap;
@@ -24,8 +21,6 @@
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
 }
-
-/* ===== Time windows ===== */
 
 .slot-count {
     color: var(--muted);
@@ -107,8 +102,6 @@
     background: #fff6ee;
 }
 
-/* ===== Price summary: looks like a delivery receipt ===== */
-
 .summary-card {
     position: sticky;
     top: 90px;
@@ -174,8 +167,6 @@
 .summary-note a:hover {
     color: var(--orange);
 }
-
-/* ===== Tips ===== */
 
 .pickup-tips {
     margin: 0;

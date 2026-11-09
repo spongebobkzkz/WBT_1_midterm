@@ -1,11 +1,3 @@
-// Packing shop page (Byerdikhajy Yesyentai)
-// 1. Catalogue: made from the "supplies" array, with search, category filter and sort.
-// 2. Cart: add, +, -, remove; the total and the free delivery bar are calculated.
-// 3. Box finder: finds the smallest box that fits the visitor's item.
-
-// ---------- Data ----------
-
-// length, width and height are the inside size of a box in cm (0 for things that are not boxes).
 const supplies = [
     { id: "box-s", name: "Small box", category: "boxes", size: "30 × 20 × 15 cm", length: 30, width: 20, height: 15, maxKg: 5, price: 450, image: "images/box.svg", info: "Shoes, books, small electronics." },
     { id: "box-m", name: "Medium box", category: "boxes", size: "40 × 30 × 25 cm", length: 40, width: 30, height: 25, maxKg: 10, price: 650, image: "images/box.svg", info: "The most popular size for online shops." },
@@ -19,14 +11,11 @@ const supplies = [
     { id: "labels", name: "Fragile labels, 20 pcs", category: "tape", size: "10 × 6 cm", length: 0, width: 0, height: 0, maxKg: 0, price: 300, image: "images/tape.svg", info: "Bright labels that tell the team to be careful." }
 ];
 
-const FREE_DELIVERY_FROM = 5000;   // the driver brings the supplies for free from this total
+const FREE_DELIVERY_FROM = 5000;
 const DELIVERY_PRICE = 700;
 
-// The cart is a list of { id, quantity }.
 let cart = [];
 let currentCategory = "all";
-
-// ---------- Small helpers ----------
 
 function formatPrice(number) {
     return number.toLocaleString("en-US") + " ₸";
@@ -40,8 +29,6 @@ function findSupply(id) {
     }
     return null;
 }
-
-// ---------- 1. Catalogue ----------
 
 function getVisibleSupplies() {
     const search = $.trim($("#shopSearch").val()).toLowerCase();
@@ -60,7 +47,6 @@ function getVisibleSupplies() {
         result.push(item);
     }
 
-    // Sort a copy, so the original order stays for "Recommended".
     const sort = $("#shopSort").val();
     if (sort === "cheap") {
         result.sort(function (a, b) { return a.price - b.price; });
@@ -117,13 +103,10 @@ function renderProducts() {
         $list.append(column);
     }
 
-    // Cards appear softly.
     $list.children().hide().fadeIn(250);
 
     $("#shopCount").text(items.length + " of " + supplies.length + " supplies");
 }
-
-// ---------- 2. Cart ----------
 
 function addToCart(id) {
     for (let i = 0; i < cart.length; i++) {
@@ -162,7 +145,6 @@ function removeFromCart(id) {
     renderCart();
 }
 
-// Returns the numbers the cart needs: count, sum of goods, delivery and total.
 function calculateCart() {
     let count = 0;
     let goods = 0;
@@ -208,7 +190,6 @@ function renderCart() {
         $list.append(line);
     }
 
-    // Free delivery bar
     let percent = Math.round(sums.goods / FREE_DELIVERY_FROM * 100);
     if (percent > 100) {
         percent = 100;
@@ -227,11 +208,8 @@ function renderCart() {
     $("#cartTotal").text(formatPrice(sums.total));
     $("#cartError").text("");
 
-    // A short blink so the visitor sees that the total changed.
     $("#cartTotal").stop(true, true).css("opacity", 0.2).animate({ opacity: 1 }, 300);
 }
-
-// ---------- 3. Box finder ----------
 
 function showFinderError(message) {
     $("#finderError").text(message);
@@ -246,7 +224,6 @@ function findBox() {
 
     $("#finderForm .form-control").removeClass("is-invalid");
 
-    // Wrong input
     const fields = ["#itemLength", "#itemWidth", "#itemHeight", "#itemWeight"];
     let hasEmpty = false;
     for (let i = 0; i < fields.length; i++) {
@@ -266,17 +243,14 @@ function findBox() {
 
     $("#finderError").text("");
 
-    // Sort the item's sides from long to short, so it can be turned in the box.
     const itemSides = [length, width, height].sort(function (a, b) { return b - a; });
 
-    // Volume weight: carriers charge for space too. Formula: L × W × H / 5000.
     const volumeWeight = Math.round(length * width * height / 5000 * 10) / 10;
     let chargedWeight = weight;
     if (volumeWeight > weight) {
         chargedWeight = volumeWeight;
     }
 
-    // Find the box with the smallest volume that fits.
     let bestBox = null;
     for (let i = 0; i < supplies.length; i++) {
         const box = supplies[i];
@@ -314,8 +288,6 @@ function findBox() {
     $("#finderResult").stop(true, true).hide().html(html).slideDown(300);
 }
 
-// ---------- Events ----------
-
 $(function () {
     renderProducts();
     renderCart();
@@ -330,7 +302,6 @@ $(function () {
         renderProducts();
     });
 
-    // "Show all supplies" inside the empty message
     $("#productList").on("click", "#resetShop", function () {
         $("#shopSearch").val("");
         currentCategory = "all";
@@ -339,7 +310,6 @@ $(function () {
         renderProducts();
     });
 
-    // "+ Add" buttons in the catalogue and in the box finder
     $(document).on("click", ".add-button", function () {
         addToCart($(this).attr("data-id"));
     });
@@ -349,11 +319,10 @@ $(function () {
         changeQuantity(id, Number($(this).attr("data-change")));
     });
 
-    // Remove: the line fades out first, then the cart is drawn again.
     $("#cartList").on("click", ".remove-button", function () {
         const $line = $(this).closest(".cart-line");
         const id = $line.attr("data-id");
-        $line.find("button").prop("disabled", true);   // no double clicks while it fades
+        $line.find("button").prop("disabled", true);
         $line.fadeOut(250, function () {
             removeFromCart(id);
         });
@@ -364,20 +333,18 @@ $(function () {
         findBox();
     });
 
-    // A red field becomes normal again when the visitor types a correct number.
     $("#finderForm").on("input", ".form-control", function () {
         if (Number($(this).val()) > 0) {
             $(this).removeClass("is-invalid");
         }
     });
 
-    // Save the cart for the pickup page and go there.
     $("#checkoutButton").on("click", function () {
         if (cart.length === 0) {
             $("#cartError").text("Your cart is empty. Add at least one item first.");
             return;
         }
-        // Save only what the pickup page needs: how many items and the total.
+
         const sums = calculateCart();
         const order = { count: sums.count, total: sums.total };
         localStorage.setItem("cargoPulseSupplies", JSON.stringify(order));

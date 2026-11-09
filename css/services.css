@@ -1,5 +1,3 @@
-/* Services page (Estai Beisenbai) */
-
 .service-card {
     display: flex;
     flex-direction: column;
@@ -46,7 +44,6 @@
     accent-color: var(--navy);
 }
 
-/* The bar at the bottom of the screen */
 .compare-bar {
     position: sticky;
     bottom: 0;

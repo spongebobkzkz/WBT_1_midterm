@@ -1,8 +1,3 @@
-// Get a quote page (Estai Beisenbai)
-// 1. The city lists are made from the "cities" array.
-// 2. Price calculator: the price and days for air, rail and road update while you type.
-// 3. Form check with clear messages under every field.
-
 const cities = [
     { name: "Guangzhou", country: "China", zone: 3, airport: true },
     { name: "Yiwu", country: "China", zone: 3, airport: false },
@@ -16,7 +11,6 @@ const cities = [
     { name: "Karaganda", country: "Kazakhstan", zone: 0, airport: false }
 ];
 
-// Prices per kg are the same as on the Services page.
 const modes = [
     { id: "air", name: "Air cargo", pricePerKg: 2900, baseDays: 2, daysPerZone: 1, minPrice: 15000 },
     { id: "rail", name: "Rail cargo", pricePerKg: 1200, baseDays: 6, daysPerZone: 4, minPrice: 25000 },
@@ -26,8 +20,6 @@ const modes = [
 const typeExtra = { commercial: 1, personal: 1, electronics: 1.15, fragile: 1.25 };
 
 let chosenMode = "";
-
-// ---------- Helpers ----------
 
 function findCity(name) {
     for (let i = 0; i < cities.length; i++) {
@@ -50,9 +42,6 @@ function fillCityLists() {
     }
 }
 
-// ---------- Price calculator ----------
-
-// Returns { price, days, available } for one transport.
 function estimate(mode) {
     const from = findCity($("#from").val());
     const to = findCity($("#to").val());
@@ -63,12 +52,10 @@ function estimate(mode) {
         return null;
     }
 
-    // Planes need an airport in both cities.
     if (mode.id === "air" && (!from.airport || !to.airport)) {
         return { available: false };
     }
 
-    // The farther zone of the two cities sets the distance.
     let zone = from.zone;
     if (to.zone > zone) {
         zone = to.zone;
@@ -89,7 +76,6 @@ function renderModes() {
     const $box = $("#modeOptions");
     $box.empty();
 
-    // Find the cheapest available price to mark it.
     let cheapest = 0;
     for (let i = 0; i < modes.length; i++) {
         const result = estimate(modes[i]);
@@ -137,8 +123,6 @@ function renderModes() {
         $box.append(label);
     }
 }
-
-// ---------- Form check ----------
 
 function showError($field, message) {
     $field.addClass("is-invalid").removeClass("is-valid");
@@ -250,19 +234,15 @@ function checkMode() {
 
 const fieldIds = ["customerName", "customerEmail", "customerPhone", "from", "to", "weight", "shipDate"];
 
-// ---------- Events ----------
-
 $(function () {
     fillCityLists();
     renderModes();
 
-    // The calendar does not show past days.
     const today = new Date();
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const day = String(today.getDate()).padStart(2, "0");
     $("#shipDate").attr("min", today.getFullYear() + "-" + month + "-" + day);
 
-    // Prices change while the visitor types or chooses.
     $("#from, #to, #cargoType").on("change", renderModes);
     $("#weight").on("input", renderModes);
 
@@ -271,12 +251,11 @@ $(function () {
         checkMode();
     });
 
-    // Fix an error -> the message disappears.
     $("#quoteForm").on("input change", "input, select", function () {
         if ($(this).hasClass("is-invalid")) {
             checkField(this.id);
         }
-        // The "to" city depends on "from", so check it again too.
+
         if (this.id === "from" && $("#to").hasClass("is-invalid")) {
             checkField("to");
         }
@@ -288,7 +267,6 @@ $(function () {
         }
     });
 
-    // Letters counter for the details
     $("#details").on("input", function () {
         $("#detailsCount").text($(this).val().length + " / 500");
     });
@@ -334,7 +312,6 @@ $(function () {
             .slideDown(400)
             .trigger("focus");
 
-        // Clear everything
         this.reset();
         $("#quoteForm .is-valid, #quoteForm .is-invalid").removeClass("is-valid is-invalid");
         $("#detailsCount").text("0 / 500");

@@ -1,12 +1,9 @@
-/* Get a quote page (Estai Beisenbai) */
-
 fieldset {
     margin: 0;
     padding: 0;
     border: 0;
 }
 
-/* Three transport cards that work as radio buttons */
 .mode-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -40,7 +37,6 @@ fieldset {
     accent-color: var(--navy);
 }
 
-/* :has() colours the whole card when its radio is checked */
 .mode-card:has(input:checked) {
     border-color: var(--navy);
     background: #eef4fc;

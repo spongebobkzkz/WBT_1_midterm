@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-/* ===== Shared style for every page ===== */
-
 :root {
     --navy: #10253f;
     --blue: #2674d9;
@@ -22,9 +20,6 @@
     box-sizing: border-box;
 }
 
-/* Smooth scrolling is done with jQuery (js/main.js), not with CSS,
-   because CSS smooth scroll makes jQuery animate() shake. */
-
 body {
     margin: 0;
     background: var(--cream);
@@ -39,7 +34,6 @@ h3,
     font-family: 'Space Grotesk', sans-serif;
 }
 
-/* A clear focus ring for keyboard users (Tab key) on every link, button and field */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -54,12 +48,10 @@ textarea:focus-visible,
     box-shadow: none;
 }
 
-/* On the dark hero a yellow ring is easier to see */
 .hero a:focus-visible {
     outline-color: var(--yellow);
 }
 
-/* Bootstrap changes the button colour on focus; keep our colours */
 .btn-orange:focus-visible,
 .btn-orange:active {
     color: var(--navy) !important;
@@ -71,8 +63,6 @@ textarea:focus-visible,
     color: var(--white) !important;
     background: transparent !important;
 }
-
-/* ===== Navigation ===== */
 
 .navbar {
     background: var(--white);
@@ -107,7 +97,6 @@ textarea:focus-visible,
     color: var(--orange) !important;
 }
 
-/* The page you are on now */
 .nav-link.active {
     color: var(--orange) !important;
     border-bottom-color: var(--orange);
@@ -127,8 +116,6 @@ textarea:focus-visible,
 .navbar-toggler:focus {
     box-shadow: none;
 }
-
-/* ===== Hero (Home) ===== */
 
 .hero {
     overflow: hidden;
@@ -165,8 +152,6 @@ textarea:focus-visible,
     color: #cbd7e5;
     font-size: 1.1rem;
 }
-
-/* ===== Buttons ===== */
 
 .btn-orange {
     display: inline-block;
@@ -209,7 +194,6 @@ textarea:focus-visible,
     background: var(--white);
 }
 
-/* A small light button for filters, + / - and similar */
 .btn-soft {
     padding: 0.5rem 0.95rem;
     border: 1px solid var(--line);
@@ -230,8 +214,6 @@ textarea:focus-visible,
     color: var(--white);
     background: var(--navy);
 }
-
-/* ===== Truck drawing (Home) ===== */
 
 .truck-art {
     position: relative;
@@ -274,7 +256,6 @@ textarea:focus-visible,
     content: '';
 }
 
-/* Two wheels: one under the box, one under the cab */
 .truck::after {
     position: absolute;
     bottom: -20px;
@@ -286,8 +267,6 @@ textarea:focus-visible,
         radial-gradient(circle at calc(100% - 20px) 20px, var(--navy) 17px, transparent 18px);
     content: '';
 }
-
-/* ===== Sections and cards ===== */
 
 .section {
     padding: 5rem 0;
@@ -313,13 +292,11 @@ textarea:focus-visible,
     transform: translateY(-6px);
 }
 
-/* Forms and big boxes do not jump when you hover them */
 form.cardx:hover,
 .cardx.no-lift:hover {
     transform: none;
 }
 
-/* A form is only as tall as its fields (no empty space under the button) */
 form.cardx {
     height: auto;
 }
@@ -350,8 +327,6 @@ form.cardx {
     font: 700 2rem 'Space Grotesk';
 }
 
-/* ===== Forms: normal, error and success states ===== */
-
 .form-label {
     color: var(--navy);
     font-weight: 500;
@@ -381,7 +356,6 @@ form.cardx {
     border-color: var(--success);
 }
 
-/* No Bootstrap icons inside the fields, but keep the arrow of the select */
 .form-control.is-invalid,
 .form-control.is-valid {
     background-image: none;
@@ -422,7 +396,6 @@ form.cardx {
     color: var(--success);
 }
 
-/* "Nothing found" message */
 .empty-state {
     padding: 2.5rem 1.5rem;
     border: 2px dashed var(--line);
@@ -440,8 +413,6 @@ form.cardx {
     font-size: 1.25rem;
 }
 
-/* ===== Table ===== */
-
 .table {
     --bs-table-bg: transparent;
 }
@@ -454,8 +425,6 @@ form.cardx {
 .table > :not(caption) > * > * {
     padding: 1rem;
 }
-
-/* ===== Footer ===== */
 
 .footer {
     padding: 3rem 0;
@@ -483,7 +452,6 @@ form.cardx {
     background: var(--white);
 }
 
-/* Back-to-top button (js/main.js) */
 .to-top {
     position: fixed;
     right: 1rem;

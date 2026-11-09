@@ -1,7 +1,3 @@
-// Tracking page (Estai Beisenbai)
-// 1. Search: find a shipment by its code and show its journey.
-// 2. Table: all sample shipments from the array, with a status filter and totals.
-
 const shipments = [
     { code: "CP-2048-KZ", from: "Guangzhou", to: "Astana", mode: "Rail", weight: 320, status: "In transit", step: 2, lastUpdate: "Warehouse 3, Almaty", eta: "12 November" },
     { code: "CP-1932-KZ", from: "Yiwu", to: "Karaganda", mode: "Road", weight: 540, status: "Customs", step: 3, lastUpdate: "Customs clearance, Khorgos", eta: "14 November" },
@@ -14,8 +10,6 @@ const shipments = [
 ];
 
 const steps = ["Order received", "Picked up", "On the way", "Customs", "Delivered"];
-
-// ---------- 1. Search ----------
 
 function findShipment(code) {
     for (let i = 0; i < shipments.length; i++) {
@@ -38,7 +32,6 @@ function showShipment(shipment) {
         stepsHtml = stepsHtml + '<li class="' + state + '">' + steps[i] + "</li>";
     }
 
-    // How much of the way is done, in percent.
     const percent = Math.round(shipment.step / (steps.length - 1) * 100);
 
     const html =
@@ -56,10 +49,8 @@ function showShipment(shipment) {
         " · <strong>Arrives:</strong> " + shipment.eta + "</p>" +
         "</article>";
 
-    // stop() ends old animations, so fast repeated searches do not stack up.
     $("#trackResult").stop(true, true).hide().html(html).fadeIn(250);
 
-    // The truck drives along the road up to the current step.
     $("#trackResult .road-done").css("width", "0%").animate({ width: percent + "%" }, 1200);
 }
 
@@ -99,8 +90,6 @@ function track() {
     }
 }
 
-// ---------- 2. Table ----------
-
 function renderTable() {
     const filter = $("#statusFilter").val();
     const $rows = $("#shipmentRows");
@@ -114,7 +103,6 @@ function renderTable() {
     for (let i = 0; i < shipments.length; i++) {
         const s = shipments[i];
 
-        // The numbers above the table count all shipments.
         totalWeight = totalWeight + s.weight;
         if (s.status === "In transit") {
             inTransit = inTransit + 1;
@@ -144,8 +132,6 @@ function renderTable() {
     );
 }
 
-// ---------- Events ----------
-
 $(function () {
     renderTable();
 
@@ -154,13 +140,11 @@ $(function () {
         track();
     });
 
-    // The error disappears when the visitor starts to type again.
     $("#trackCode").on("input", function () {
         $("#trackError").text("");
         $(this).removeClass("is-invalid");
     });
 
-    // Escape clears the search.
     $("#trackCode").on("keydown", function (event) {
         if (event.key === "Escape") {
             $(this).val("");
@@ -170,7 +154,6 @@ $(function () {
 
     $("#statusFilter").on("change", renderTable);
 
-    // Click a code in the table: put it in the search and track it.
     $("#shipmentRows").on("click", ".code-button", function () {
         $("#trackCode").val($(this).attr("data-code"));
         track();

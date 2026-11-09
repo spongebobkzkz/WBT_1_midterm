@@ -1,11 +1,3 @@
-// Pickup page (Byerdikhajy Yesyentai)
-// 1. Time windows: made from the "slots" array, with a filter.
-// 2. Live price: the total is calculated from the form and the chosen window.
-// 3. Form check: every field has its own rule and its own error message.
-
-// ---------- Data ----------
-
-// Every time window for today's pickups in Almaty.
 const slots = [
     { id: "w1", time: "09:00 – 10:30", period: "morning", driver: "Arman", vehicle: "Van", maxKg: 800, spotsLeft: 3, fee: 0 },
     { id: "w2", time: "10:30 – 12:00", period: "morning", driver: "Dana", vehicle: "Van", maxKg: 800, spotsLeft: 0, fee: 0 },
@@ -19,15 +11,14 @@ const slots = [
     { id: "w10", time: "19:00 – 20:30", period: "evening", driver: "Dana", vehicle: "Van", maxKg: 800, spotsLeft: 0, fee: 1000 }
 ];
 
-const BASE_PRICE = 2000;        // the driver comes to you
-const PRICE_PER_PARCEL = 300;   // every parcel after the first one
-const FREE_KG = 50;             // the first 50 kg are free
-const PRICE_PER_KG = 40;        // every kg after the free 50 kg
+const BASE_PRICE = 2000;
+const PRICE_PER_PARCEL = 300;
+const FREE_KG = 50;
+const PRICE_PER_KG = 40;
 
 let selectedSlotId = "";
 let currentPeriod = "all";
 
-// Packing supplies from the shop page: { count, total } or null.
 let supplies = null;
 
 function loadSupplies() {
@@ -37,9 +28,6 @@ function loadSupplies() {
     }
 }
 
-// ---------- Small helpers ----------
-
-// 12500 -> "12,500 ₸"
 function formatPrice(number) {
     return number.toLocaleString("en-US") + " ₸";
 }
@@ -53,7 +41,6 @@ function findSlot(id) {
     return null;
 }
 
-// The weight the visitor typed, or 0 if the field is empty or wrong.
 function getWeight() {
     const weight = Number($("#pickupWeight").val());
     if (weight > 0) {
@@ -61,8 +48,6 @@ function getWeight() {
     }
     return 0;
 }
-
-// ---------- 1. Time windows ----------
 
 function renderSlots() {
     const $list = $("#slotList");
@@ -77,7 +62,6 @@ function renderSlots() {
     for (let i = 0; i < slots.length; i++) {
         const slot = slots[i];
 
-        // Skip the windows the visitor does not want to see.
         if (currentPeriod !== "all" && slot.period !== currentPeriod) {
             continue;
         }
@@ -103,7 +87,6 @@ function renderSlots() {
             feeText = "+" + formatPrice(slot.fee);
         }
 
-        // Build one button for this window with DOM methods.
         const button = document.createElement("button");
         button.type = "button";
         button.className = "slot";
@@ -128,14 +111,12 @@ function renderSlots() {
         freePlaces = freePlaces + slot.spotsLeft;
     }
 
-    // If the chosen window is now hidden or not allowed, forget it.
     const chosen = findSlot(selectedSlotId);
     if (chosen !== null && (chosen.spotsLeft === 0 || weight > chosen.maxKg)) {
         selectedSlotId = "";
         $("#slotDetails").stop(true, true).slideUp(200);
     }
 
-    // Empty result
     if (shown === 0) {
         $list.html(
             '<div class="empty-state">' +
@@ -155,13 +136,10 @@ function showSlotDetails(slot) {
         slot.vehicle + " up to " + slot.maxKg + " kg. " +
         slot.driver + " calls you 30 minutes before arrival.";
 
-    // slideUp + slideDown makes the change visible; stop() stops old animations.
     $("#slotDetails").stop(true, true).slideUp(150, function () {
         $(this).html(html).slideDown(250);
     });
 }
-
-// ---------- 2. Live price ----------
 
 function calculatePrice() {
     const parcels = Number($("#pickupParcels").val());
@@ -219,8 +197,6 @@ function updateSummary() {
     }
 }
 
-// ---------- 3. Form check ----------
-
 function showError($field, message) {
     $field.addClass("is-invalid").removeClass("is-valid");
     $field.closest("div").find(".invalid-feedback").text(message);
@@ -231,7 +207,6 @@ function clearError($field) {
     $field.closest("div").find(".invalid-feedback").text("");
 }
 
-// Checks one field. Returns true if it is correct.
 function checkField(id) {
     const $field = $("#" + id);
     const value = $.trim($field.val());
@@ -363,9 +338,6 @@ const fieldIds = [
     "pickupAddress", "pickupDate", "pickupParcels", "pickupWeight", "pickupPacked"
 ];
 
-// ---------- Events ----------
-
-// A Date -> "2026-11-08", the format of <input type="date">
 function toInputDate(date) {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
@@ -383,12 +355,10 @@ $(function () {
         updateSummary();
     });
 
-    // The calendar starts from tomorrow.
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     $("#pickupDate").attr("min", toInputDate(tomorrow));
 
-    // Part of the day filter
     $("#periodFilter").on("click", "button", function () {
         currentPeriod = $(this).attr("data-period");
         $("#periodFilter button").removeClass("selected");
@@ -398,7 +368,6 @@ $(function () {
 
     $("#onlyFree").on("change", renderSlots);
 
-    // "Show the whole day" button inside the empty message
     $("#slotList").on("click", "#showAllSlots", function () {
         currentPeriod = "all";
         $("#onlyFree").prop("checked", false);
@@ -407,7 +376,6 @@ $(function () {
         renderSlots();
     });
 
-    // Choose a window
     $("#slotList").on("click", ".slot", function () {
         selectedSlotId = $(this).attr("data-id");
         checkSlot();
@@ -415,26 +383,22 @@ $(function () {
         updateSummary();
         showSlotDetails(findSlot(selectedSlotId));
 
-        // If the weight was too heavy for the old window, check it again.
         if ($("#pickupWeight").hasClass("is-invalid")) {
             checkField("pickupWeight");
         }
     });
 
-    // Parcels and weight change the price and the allowed windows.
     $("#pickupParcels, #pickupWeight").on("input", function () {
         renderSlots();
         updateSummary();
     });
 
-    // An error disappears as soon as the field is corrected.
     $("#pickupForm").on("input change", "input, select", function () {
         if ($(this).hasClass("is-invalid")) {
             checkField(this.id);
         }
     });
 
-    // A filled field is checked when the visitor leaves it.
     $("#pickupForm").on("blur", "input, select", function () {
         if ($.trim($(this).val()) !== "" && this.type !== "checkbox") {
             checkField(this.id);
@@ -455,7 +419,7 @@ $(function () {
         }
 
         if (!allCorrect) {
-            // Move the keyboard focus to the first wrong field.
+
             $("#pickupForm .is-invalid").first().trigger("focus");
             if (selectedSlotId === "") {
                 $("html, body").stop().animate({ scrollTop: $("#slotList").offset().top - 120 }, 400);
@@ -463,7 +427,6 @@ $(function () {
             return;
         }
 
-        // Everything is correct: show the booking.
         const slot = findSlot(selectedSlotId);
         const price = calculatePrice();
         const bookingNumber = "PU-" + Math.floor(1000 + Math.random() * 9000);
@@ -485,12 +448,11 @@ $(function () {
             .fadeIn(500)
             .trigger("focus");
 
-        // Clear the form and the choice.
         this.reset();
         $("#pickupForm .is-valid, #pickupForm .is-invalid").removeClass("is-valid is-invalid");
         selectedSlotId = "";
         $("#slotDetails").stop(true, true).slideUp(200);
-        localStorage.removeItem("cargoPulseSupplies");   // the supplies are now part of this booking
+        localStorage.removeItem("cargoPulseSupplies");
         supplies = null;
         renderSlots();
         updateSummary();
