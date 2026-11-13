@@ -15,6 +15,8 @@ const BASE_PRICE = 2000;
 const PRICE_PER_PARCEL = 300;
 const FREE_KG = 50;
 const PRICE_PER_KG = 40;
+const SUPPLIES_FREE_FROM = 5000;
+const SUPPLIES_DELIVERY = 700;
 
 let selectedSlotId = "";
 let currentPeriod = "all";
@@ -22,10 +24,36 @@ let currentPeriod = "all";
 let supplies = null;
 
 function loadSupplies() {
-    const saved = readSaved("cargoPulseSupplies", null);
-    if (saved !== null && saved.count > 0 && saved.total > 0) {
-        supplies = saved;
+    const savedCart = readSaved("cargoPulseCart", []);
+    let count = 0;
+    let goods = 0;
+
+    for (let i = 0; i < savedCart.length; i++) {
+        const quantity = Number(savedCart[i].quantity);
+        const price = Number(savedCart[i].price);
+        if (quantity > 0 && price > 0) {
+            count = count + quantity;
+            goods = goods + price * quantity;
+        }
     }
+
+    if (count === 0) {
+        supplies = null;
+        return;
+    }
+
+    let delivery = SUPPLIES_DELIVERY;
+    if (goods >= SUPPLIES_FREE_FROM) {
+        delivery = 0;
+    }
+
+    supplies = { count: count, total: goods + delivery };
+}
+
+function clearSupplies() {
+    saveData("cargoPulseCart", []);
+    supplies = null;
+    updateCartBadge();
 }
 
 function formatPrice(number) {
@@ -355,8 +383,7 @@ $(function () {
     updateSummary();
 
     $("#suppliesNote").on("click", "#removeSupplies", function () {
-        localStorage.removeItem("cargoPulseSupplies");
-        supplies = null;
+        clearSupplies();
         updateSummary();
     });
 
@@ -457,8 +484,7 @@ $(function () {
         $("#pickupForm .is-valid, #pickupForm .is-invalid").removeClass("is-valid is-invalid");
         selectedSlotId = "";
         $("#slotDetails").stop(true, true).slideUp(200);
-        localStorage.removeItem("cargoPulseSupplies");
-        supplies = null;
+        clearSupplies();
         renderSlots();
         updateSummary();
     });
