@@ -40,7 +40,8 @@
                         <circle cx="9.5" cy="19.5" r="1.5"/>
                         <circle cx="17" cy="19.5" r="1.5"/>
                     </svg>
-                    <span class="visually-hidden">Cart</span>
+                    <span class="visually-hidden">Cart, items:</span>
+                    <span class="cart-count" id="navCartCount">0</span>
                 </a>
 
                 <button class="tool-btn theme-toggle" id="themeToggle" type="button" aria-label="Dark mode" aria-pressed="false">
@@ -251,6 +252,10 @@
 
                             <button class="btn btn-orange w-100 mt-3" type="button" id="checkoutButton">
                                 Bring with my pickup →
+                            </button>
+
+                            <button class="link-button clear-cart mt-2" type="button" id="clearCart">
+                                Clear cart
                             </button>
 
                             <p class="cart-error" id="cartError" role="alert"></p>

@@ -31,6 +31,26 @@ function saveData(key, value) {
     }
 }
 
+function updateCartBadge() {
+    const savedCart = readSaved("cargoPulseCart", []);
+    let count = 0;
+
+    for (let i = 0; i < savedCart.length; i++) {
+        const quantity = Number(savedCart[i].quantity);
+        if (quantity > 0) {
+            count = count + quantity;
+        }
+    }
+
+    const $badge = $("#navCartCount");
+    $badge.text(count);
+    if (count > 0) {
+        $badge.show();
+    } else {
+        $badge.hide();
+    }
+}
+
 function applyTheme(theme) {
     $("html").attr("data-theme", theme).attr("data-bs-theme", theme);
     if (theme === "dark") {
@@ -46,6 +66,8 @@ $(function () {
     } else {
         applyTheme("light");
     }
+
+    updateCartBadge();
 
     $("#themeToggle").on("click", function () {
         let next = "dark";

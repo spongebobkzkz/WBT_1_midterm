@@ -305,3 +305,18 @@
         position: static;
     }
 }
+
+.clear-cart {
+    display: block;
+    width: 100%;
+    padding: 0.4rem;
+    border: 0;
+    color: var(--muted);
+    background: none;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.clear-cart:hover {
+    color: var(--error);
+}

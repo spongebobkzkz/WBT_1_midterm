@@ -30,6 +30,25 @@ function findSupply(id) {
     return null;
 }
 
+function loadCart() {
+    const saved = readSaved("cargoPulseCart", []);
+    cart = [];
+
+    for (let i = 0; i < saved.length; i++) {
+        const item = findSupply(saved[i].id);
+        const quantity = Number(saved[i].quantity);
+
+        if (item !== null && Number.isInteger(quantity) && quantity > 0) {
+            cart.push({ id: item.id, name: item.name, price: item.price, quantity: Math.min(quantity, 50) });
+        }
+    }
+}
+
+function saveCart() {
+    saveData("cargoPulseCart", cart);
+    updateCartBadge();
+}
+
 function getVisibleSupplies() {
     const search = $.trim($("#shopSearch").val()).toLowerCase();
     const result = [];
@@ -116,7 +135,8 @@ function addToCart(id) {
             return;
         }
     }
-    cart.push({ id: id, quantity: 1 });
+    const item = findSupply(id);
+    cart.push({ id: id, name: item.name, price: item.price, quantity: 1 });
     renderCart();
 }
 
@@ -145,6 +165,11 @@ function removeFromCart(id) {
     renderCart();
 }
 
+function clearCart() {
+    cart = [];
+    renderCart();
+}
+
 function calculateCart() {
     let count = 0;
     let goods = 0;
@@ -168,9 +193,13 @@ function renderCart() {
     const sums = calculateCart();
 
     $list.empty();
+    saveCart();
 
     if (cart.length === 0) {
         $list.html('<li class="cart-empty">Your cart is empty. Add a box or tape from the list.</li>');
+        $("#clearCart").hide();
+    } else {
+        $("#clearCart").show();
     }
 
     for (let i = 0; i < cart.length; i++) {
@@ -289,6 +318,7 @@ function findBox() {
 }
 
 $(function () {
+    loadCart();
     renderProducts();
     renderCart();
 
@@ -328,6 +358,14 @@ $(function () {
         });
     });
 
+    $("#clearCart").on("click", function () {
+        $("#clearCart").prop("disabled", true);
+        $("#cartList .cart-line").stop(true, true).fadeOut(250).promise().done(function () {
+            $("#clearCart").prop("disabled", false);
+            clearCart();
+        });
+    });
+
     $("#finderForm").on("submit", function (event) {
         event.preventDefault();
         findBox();
@@ -345,9 +383,6 @@ $(function () {
             return;
         }
 
-        const sums = calculateCart();
-        const order = { count: sums.count, total: sums.total };
-        localStorage.setItem("cargoPulseSupplies", JSON.stringify(order));
         window.location.href = "pickup.html";
     });
 });
