@@ -195,3 +195,64 @@
         margin-right: 10px;
     }
 }
+
+.bookings-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.count-pill {
+    display: inline-grid;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 0.4rem;
+    place-items: center;
+    border-radius: 999px;
+    color: var(--on-accent);
+    background: var(--orange);
+    font-size: 0.9rem;
+}
+
+.booking-list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.booking {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--orange);
+    border-radius: 14px;
+    background: var(--cream);
+    transition: border-color 0.2s;
+}
+
+.booking:hover {
+    border-color: var(--orange);
+}
+
+.booking strong {
+    color: var(--heading);
+}
+
+.booking small {
+    display: block;
+    color: var(--muted);
+}
+
+.booking-price {
+    color: var(--heading);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+}

@@ -22,6 +22,7 @@ let selectedSlotId = "";
 let currentPeriod = "all";
 
 let supplies = null;
+let bookings = [];
 
 function loadSupplies() {
     const savedCart = readSaved("cargoPulseCart", []);
@@ -54,6 +55,60 @@ function clearSupplies() {
     saveData("cargoPulseCart", []);
     supplies = null;
     updateCartBadge();
+}
+
+function loadBookings() {
+    const saved = readSaved("cargoPulseBookings", []);
+    bookings = [];
+
+    for (let i = 0; i < saved.length; i++) {
+        if (saved[i] !== null && typeof saved[i].number === "string" && Number(saved[i].total) > 0) {
+            bookings.push(saved[i]);
+        }
+    }
+}
+
+function renderBookings() {
+    const $list = $("#bookingList");
+    $list.empty();
+    $("#bookingCount").text(bookings.length);
+
+    if (bookings.length === 0) {
+        $list.html(
+            '<li class="empty-state">' +
+            "<strong>No pickups yet</strong>" +
+            "Choose a time window and fill in the form above to book your first pickup." +
+            "</li>"
+        );
+        $("#cancelAll").hide();
+        return;
+    }
+
+    $("#cancelAll").show();
+
+    for (let i = 0; i < bookings.length; i++) {
+        const booking = bookings[i];
+        const line = document.createElement("li");
+        line.className = "booking";
+        line.setAttribute("data-number", booking.number);
+        line.innerHTML =
+            "<div><strong>" + booking.number + " · " + booking.dateText + "</strong>" +
+            "<small>" + booking.time + " · driver " + booking.driver + " · " + $("<span>").text(booking.address).html() + "</small></div>" +
+            '<span class="booking-price">' + formatPrice(Number(booking.total)) + "</span>" +
+            '<button class="btn-soft cancel-booking" type="button" aria-label="Cancel pickup ' + booking.number + '">Cancel</button>';
+        $list.append(line);
+    }
+}
+
+function cancelBooking(number) {
+    for (let i = 0; i < bookings.length; i++) {
+        if (bookings[i].number === number) {
+            bookings.splice(i, 1);
+            break;
+        }
+    }
+    saveData("cargoPulseBookings", bookings);
+    renderBookings();
 }
 
 function formatPrice(number) {
@@ -379,8 +434,28 @@ function toInputDate(date) {
 
 $(function () {
     loadSupplies();
+    loadBookings();
     renderSlots();
     updateSummary();
+    renderBookings();
+
+    $("#bookingList").on("click", ".cancel-booking", function () {
+        const $line = $(this).closest(".booking");
+        $(this).prop("disabled", true);
+        $line.stop(true, true).fadeOut(250, function () {
+            cancelBooking($line.attr("data-number"));
+        });
+    });
+
+    $("#cancelAll").on("click", function () {
+        $(this).prop("disabled", true);
+        $("#bookingList .booking").stop(true, true).fadeOut(250).promise().done(function () {
+            bookings = [];
+            saveData("cargoPulseBookings", bookings);
+            $("#cancelAll").prop("disabled", false);
+            renderBookings();
+        });
+    });
 
     $("#suppliesNote").on("click", "#removeSupplies", function () {
         clearSupplies();
@@ -467,6 +542,17 @@ $(function () {
         const dateText = date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
 
         slot.spotsLeft = slot.spotsLeft - 1;
+
+        bookings.push({
+            number: bookingNumber,
+            dateText: dateText,
+            time: slot.time,
+            driver: slot.driver,
+            address: $.trim($("#pickupAddress").val()),
+            total: price.total
+        });
+        saveData("cargoPulseBookings", bookings);
+        renderBookings();
 
         $("#pickupSuccess")
             .stop(true, true)
