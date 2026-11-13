@@ -22,9 +22,9 @@ let currentPeriod = "all";
 let supplies = null;
 
 function loadSupplies() {
-    const saved = localStorage.getItem("cargoPulseSupplies");
-    if (saved !== null) {
-        supplies = JSON.parse(saved);
+    const saved = readSaved("cargoPulseSupplies", null);
+    if (saved !== null && saved.count > 0 && saved.total > 0) {
+        supplies = saved;
     }
 }
 

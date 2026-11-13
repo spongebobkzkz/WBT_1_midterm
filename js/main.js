@@ -1,3 +1,36 @@
+function readSaved(key, emptyValue) {
+    let text = null;
+    try {
+        text = localStorage.getItem(key);
+    } catch (error) {
+        return emptyValue;
+    }
+    if (text === null) {
+        return emptyValue;
+    }
+    try {
+        const value = JSON.parse(text);
+        if (value === null) {
+            return emptyValue;
+        }
+        if (Array.isArray(emptyValue) && !Array.isArray(value)) {
+            return emptyValue;
+        }
+        return value;
+    } catch (error) {
+        return emptyValue;
+    }
+}
+
+function saveData(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
 $(function () {
     const $toTop = $("#toTop");
 
