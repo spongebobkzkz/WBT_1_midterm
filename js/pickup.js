@@ -433,6 +433,11 @@ function toInputDate(date) {
 }
 
 $(function () {
+    const linkWeight = Number(new URLSearchParams(window.location.search).get("weight"));
+    if (linkWeight >= 1 && linkWeight <= 1500) {
+        $("#pickupWeight").val(Math.round(linkWeight));
+    }
+
     loadSupplies();
     loadBookings();
     renderSlots();
