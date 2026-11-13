@@ -31,7 +31,35 @@ function saveData(key, value) {
     }
 }
 
+function applyTheme(theme) {
+    $("html").attr("data-theme", theme).attr("data-bs-theme", theme);
+    if (theme === "dark") {
+        $("#themeToggle").attr("aria-pressed", "true").attr("aria-label", "Light mode");
+    } else {
+        $("#themeToggle").attr("aria-pressed", "false").attr("aria-label", "Dark mode");
+    }
+}
+
 $(function () {
+    if ($("html").attr("data-theme") === "dark") {
+        applyTheme("dark");
+    } else {
+        applyTheme("light");
+    }
+
+    $("#themeToggle").on("click", function () {
+        let next = "dark";
+        if ($("html").attr("data-theme") === "dark") {
+            next = "light";
+        }
+        try {
+            localStorage.setItem("cargoPulseTheme", next);
+        } catch (error) {
+            console.warn("The theme could not be saved in this browser.");
+        }
+        applyTheme(next);
+    });
+
     const $toTop = $("#toTop");
 
     $(window).on("scroll", function () {
