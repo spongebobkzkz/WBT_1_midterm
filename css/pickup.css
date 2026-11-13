@@ -179,7 +179,7 @@
 }
 
 .pickup-tips a {
-    color: var(--blue);
+    color: var(--link);
     font-weight: 500;
 }
 
@@ -255,4 +255,18 @@
     color: var(--heading);
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
+}
+
+#pickupSuccess {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 4.5rem;
+}
+
+.success-truck {
+    position: absolute;
+    bottom: 0.5rem;
+    left: -110px;
+    width: 104px;
+    height: auto;
 }

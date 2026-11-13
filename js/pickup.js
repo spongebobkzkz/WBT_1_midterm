@@ -426,6 +426,18 @@ const fieldIds = [
     "pickupAddress", "pickupDate", "pickupParcels", "pickupWeight", "pickupPacked"
 ];
 
+function driveTruck() {
+    const $truck = $("#pickupSuccess .success-truck");
+    const end = $("#pickupSuccess").outerWidth();
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        $truck.css("left", end - 130);
+        return;
+    }
+
+    $truck.stop(true).css("left", -110).animate({ left: end }, 2200, "linear");
+}
+
 function toInputDate(date) {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
@@ -566,10 +578,13 @@ $(function () {
                 '<h2 class="h4">Thank you, ' + $("<span>").text(name).html() + "! Your pickup is booked.</h2>" +
                 '<p class="mb-1">Booking number: <strong>' + bookingNumber + "</strong></p>" +
                 '<p class="mb-1">' + dateText + ", " + slot.time + " · driver " + slot.driver + "</p>" +
-                '<p class="mb-0">Price to pay at pickup: <strong>' + formatPrice(price.total) + "</strong></p>"
+                '<p class="mb-0">Price to pay at pickup: <strong>' + formatPrice(price.total) + "</strong></p>" +
+                '<img class="success-truck" src="images/truck.svg" alt="" width="104" height="60">'
             )
             .fadeIn(500)
             .trigger("focus");
+
+        driveTruck();
 
         this.reset();
         $("#pickupForm .is-valid, #pickupForm .is-invalid").removeClass("is-valid is-invalid");
