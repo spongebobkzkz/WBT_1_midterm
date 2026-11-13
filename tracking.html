@@ -24,50 +24,65 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
+    <nav class="navbar navbar-expand-lg sticky-top site-nav" aria-label="Main menu">
         <div class="container py-2">
 
             <a class="navbar-brand brand" href="index.html">
                 CARGO<span>/</span>PULSE
             </a>
 
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mainNav"
-                aria-controls="mainNav"
-                aria-expanded="false"
-                aria-label="Open the menu"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="nav-tools order-lg-last">
+                <a class="tool-btn" href="shop.html#cartTitle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 4h2l2.4 11h11l2-8H6.2"/>
+                        <circle cx="9.5" cy="19.5" r="1.5"/>
+                        <circle cx="17" cy="19.5" r="1.5"/>
+                    </svg>
+                    <span class="visually-hidden">Cart</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Open the menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
 
             <div class="collapse navbar-collapse" id="mainNav">
-                <div class="navbar-nav ms-auto main-navigation">
-                    <a class="nav-link" href="index.html">
-                        Home
-                    </a>
+                <ul class="navbar-nav mx-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Send a parcel
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="quote.html">
+                                    Get a price
+                                    <small>See the cost before you send</small>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="pickup.html">
+                                    Book a pickup
+                                    <small>A courier comes to your door</small>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="shop.html">
+                                    Packing shop
+                                    <small>Boxes, tape and bubble wrap</small>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
 
-                    <a class="nav-link" href="services.html">
-                        Services
-                    </a>
-
-                    <a class="nav-link active" href="tracking.html" aria-current="page">
-                        Tracking
-                    </a>
-
-                    <a class="nav-link" href="quote.html">
-                        Get a quote
-                    </a>
-
-                    <a class="nav-link" href="pickup.html">
-                        Pickup
-                    </a>
-
-                    <a class="nav-link" href="shop.html">
-                        Packing shop
-                    </a>
+                <div class="nav-actions">
+                    <a class="btn btn-orange nav-cta active" href="tracking.html" aria-current="page">Track a parcel</a>
                 </div>
             </div>
 
