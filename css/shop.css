@@ -320,3 +320,7 @@
 .clear-cart:hover {
     color: var(--error);
 }
+
+.finder .invalid-feedback {
+    color: var(--error-on-deep);
+}

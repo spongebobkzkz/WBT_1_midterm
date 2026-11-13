@@ -252,21 +252,31 @@ function findBox() {
     const weight = Number($("#itemWeight").val());
 
     $("#finderForm .form-control").removeClass("is-invalid");
+    $("#finderForm .invalid-feedback").text("");
 
     const fields = ["#itemLength", "#itemWidth", "#itemHeight", "#itemWeight"];
-    let hasEmpty = false;
+    let hasError = false;
     for (let i = 0; i < fields.length; i++) {
-        if ($(fields[i]).val() === "" || Number($(fields[i]).val()) <= 0) {
-            $(fields[i]).addClass("is-invalid");
-            hasEmpty = true;
+        const $field = $(fields[i]);
+        const value = Number($field.val());
+        let message = "";
+
+        if ($field.val() === "") {
+            message = "Write a number.";
+        } else if (value <= 0) {
+            message = "Must be bigger than 0.";
+        } else if (i < 3 && value > 300) {
+            message = "Max 300 cm. Bigger items are cargo.";
+        }
+
+        if (message !== "") {
+            $field.addClass("is-invalid");
+            $field.next(".invalid-feedback").text(message);
+            hasError = true;
         }
     }
-    if (hasEmpty) {
-        showFinderError("Please write all four numbers. Each must be bigger than 0.");
-        return;
-    }
-    if (length > 300 || width > 300 || height > 300) {
-        showFinderError("A side longer than 3 metres is cargo, not a parcel. Please ask for a quote.");
+    if (hasError) {
+        showFinderError("Please fix the marked fields.");
         return;
     }
 
@@ -374,6 +384,7 @@ $(function () {
     $("#finderForm").on("input", ".form-control", function () {
         if (Number($(this).val()) > 0) {
             $(this).removeClass("is-invalid");
+            $(this).next(".invalid-feedback").text("");
         }
     });
 
