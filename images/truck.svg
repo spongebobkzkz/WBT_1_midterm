@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" width="520" height="300">
+  <style>
+    .wheel { transform-box: fill-box; transform-origin: center; }
+    @media (prefers-reduced-motion: no-preference) {
+      .wheel { animation: spin 1.6s linear infinite; }
+      .speed { animation: rush 1.2s ease-out infinite; }
+      .speed + .speed { animation-delay: 0.4s; }
+      .speed + .speed + .speed { animation-delay: 0.8s; }
+      .body { animation: bump 1.6s ease-in-out infinite; }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes rush { from { transform: translateX(14px); opacity: 0; } 40% { opacity: 1; } to { transform: translateX(-16px); opacity: 0; } }
+    @keyframes bump { 50% { transform: translateY(-2px); } }
+  </style>
+
+  <ellipse cx="270" cy="266" rx="236" ry="11" fill="#06111f" opacity="0.25"/>
+  <line x1="24" y1="284" x2="500" y2="284" stroke="#7fb0ec" stroke-width="4" stroke-linecap="round" stroke-dasharray="34 22" opacity="0.6"/>
+
+  <g stroke="#7fb0ec" stroke-width="6" stroke-linecap="round" opacity="0.8">
+    <line class="speed" x1="10" y1="104" x2="64" y2="104"/>
+    <line class="speed" x1="26" y1="140" x2="64" y2="140"/>
+    <line class="speed" x1="4" y1="176" x2="64" y2="176"/>
+  </g>
+
+  <g class="body">
+    <rect x="96" y="222" width="372" height="16" rx="4" fill="#1d3655"/>
+    <circle cx="150" cy="242" r="33" fill="#1d3655"/>
+    <circle cx="294" cy="242" r="33" fill="#1d3655"/>
+    <circle cx="420" cy="242" r="33" fill="#1d3655"/>
+
+    <rect x="80" y="60" width="272" height="166" rx="12" fill="#ffd66b"/>
+    <path d="M80 200 h272 v14 q0 12 -12 12 h-248 q-12 0 -12 -12 z" fill="#f2bd45"/>
+    <rect x="76" y="52" width="280" height="14" rx="7" fill="#ffe7a3"/>
+    <rect x="80" y="66" width="20" height="134" fill="#f6ca5a"/>
+    <line x1="100" y1="66" x2="100" y2="200" stroke="#e4ad38" stroke-width="2"/>
+
+    <text x="226" y="140" text-anchor="middle" font-family="'Space Grotesk', 'Segoe UI', Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="-1" textLength="214" lengthAdjust="spacingAndGlyphs" fill="#10253f">CARGO<tspan fill="#ff8a3d">/</tspan>PULSE</text>
+    <polyline points="128,170 190,170 202,152 216,188 230,160 240,170 324,170" fill="none" stroke="#ff8a3d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="350" y="200" width="10" height="24" fill="#1d3655"/>
+    <path d="M358 92 h54 q12 0 20 10 l34 44 q6 8 6 18 v52 q0 12 -12 12 h-102 z" fill="#ff8a3d"/>
+    <path d="M358 204 h114 v12 q0 12 -12 12 h-102 z" fill="#e2702a"/>
+    <path d="M374 106 h36 q7 0 11 5 l28 37 h-75 z" fill="#d6ebff"/>
+    <path d="M384 106 h14 l-20 42 h-4 v-20 z" fill="#ffffff" opacity="0.7"/>
+    <path d="M410 106 q7 0 11 5 l28 37 h-6 z" fill="#9cc6f2"/>
+    <path d="M368 158 h96 M368 158 v44" stroke="#e2702a" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="378" y="168" width="18" height="6" rx="3" fill="#10253f" opacity="0.55"/>
+    <rect x="458" y="174" width="14" height="16" rx="4" fill="#fff4c2"/>
+    <rect x="440" y="214" width="38" height="14" rx="6" fill="#10253f"/>
+    <path d="M446 118 h10" stroke="#c4581a" stroke-width="3" stroke-linecap="round"/>
+    <rect x="454" y="108" width="7" height="26" rx="3.5" fill="#c4581a"/>
+    <rect x="352" y="96" width="6" height="108" rx="3" fill="#e2702a"/>
+  </g>
+
+  <g>
+    <circle cx="150" cy="242" r="26" fill="#10253f" stroke="#4a6a8e" stroke-width="3"/>
+    <circle cx="294" cy="242" r="26" fill="#10253f" stroke="#4a6a8e" stroke-width="3"/>
+    <circle cx="420" cy="242" r="26" fill="#10253f" stroke="#4a6a8e" stroke-width="3"/>
+    <g class="wheel" fill="#10253f">
+      <circle cx="150" cy="242" r="13" fill="#dce4ed"/>
+      <circle cx="150" cy="242" r="4"/>
+      <circle cx="150" cy="233" r="2.5"/><circle cx="158" cy="246" r="2.5"/><circle cx="142" cy="246" r="2.5"/>
+    </g>
+    <g class="wheel" fill="#10253f">
+      <circle cx="294" cy="242" r="13" fill="#dce4ed"/>
+      <circle cx="294" cy="242" r="4"/>
+      <circle cx="294" cy="233" r="2.5"/><circle cx="302" cy="246" r="2.5"/><circle cx="286" cy="246" r="2.5"/>
+    </g>
+    <g class="wheel" fill="#10253f">
+      <circle cx="420" cy="242" r="13" fill="#dce4ed"/>
+      <circle cx="420" cy="242" r="4"/>
+      <circle cx="420" cy="233" r="2.5"/><circle cx="428" cy="246" r="2.5"/><circle cx="412" cy="246" r="2.5"/>
+    </g>
+  </g>
+</svg>
