@@ -153,7 +153,11 @@ function calculatePrice() {
     if (parcels > 1) {
         const parcelsPrice = (parcels - 1) * PRICE_PER_PARCEL;
         total = total + parcelsPrice;
-        rows.push([(parcels - 1) + " extra parcels", parcelsPrice]);
+        let parcelsText = (parcels - 1) + " extra parcels";
+        if (parcels === 2) {
+            parcelsText = "1 extra parcel";
+        }
+        rows.push([parcelsText, parcelsPrice]);
     }
 
     if (weight > FREE_KG) {
@@ -216,8 +220,9 @@ function checkField(id) {
             showError($field, "Please write your name.");
             return false;
         }
-        if (value.length < 2 || /\d/.test(value)) {
-            showError($field, "The name must have at least 2 letters and no numbers.");
+        const letters = value.replace(/[^\p{L}]/gu, "");
+        if (letters.length < 2 || !/^[\p{L}\s'-]+$/u.test(value)) {
+            showError($field, "The name must have at least 2 letters and no numbers or signs.");
             return false;
         }
     }
