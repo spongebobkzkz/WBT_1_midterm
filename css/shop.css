@@ -59,7 +59,7 @@
 }
 
 .finder-result a {
-    color: var(--blue);
+    color: var(--link);
 }
 
 .finder-match {

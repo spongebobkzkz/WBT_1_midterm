@@ -92,7 +92,7 @@ textarea:focus-visible,
 .btn:focus-visible,
 .nav-link:focus-visible,
 .navbar-toggler:focus-visible {
-    outline: 3px solid var(--blue);
+    outline: 3px solid var(--link);
     outline-offset: 3px;
     box-shadow: none;
 }
