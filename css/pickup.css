@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    color: var(--navy);
+    color: var(--heading);
     font-weight: 500;
 }
 
@@ -16,7 +16,7 @@
     margin-right: 0.4rem;
     place-items: center;
     border-radius: 50%;
-    color: var(--navy);
+    color: var(--on-accent);
     background: var(--yellow);
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
@@ -40,8 +40,8 @@
     padding: 0.85rem 1rem;
     border: 2px solid var(--line);
     border-radius: 14px;
-    color: var(--navy);
-    background: var(--white);
+    color: var(--heading);
+    background: var(--surface);
     text-align: left;
     transition: border-color 0.2s, transform 0.2s, background 0.2s;
 }
@@ -52,9 +52,9 @@
 }
 
 .slot.chosen {
-    border-color: var(--navy);
-    color: var(--white);
-    background: var(--navy);
+    border-color: var(--heading);
+    color: var(--surface);
+    background: var(--heading);
 }
 
 .slot:disabled {
@@ -99,7 +99,7 @@
     padding: 1rem 1.25rem;
     border-left: 4px solid var(--orange);
     border-radius: 10px;
-    background: #fff6ee;
+    background: var(--orange-tint);
 }
 
 .summary-card {
@@ -107,8 +107,8 @@
     top: 90px;
     padding: 1.5rem;
     border-radius: 18px;
-    color: var(--white);
-    background: var(--navy);
+    color: var(--on-deep);
+    background: var(--deep);
     box-shadow: 10px 10px 0 var(--orange);
 }
 
@@ -122,12 +122,12 @@
     gap: 0.5rem 1rem;
     margin: 1.25rem 0;
     padding-bottom: 1rem;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    border-bottom: 1px dashed var(--on-deep-line);
 }
 
 .summary-list dt {
     font-weight: 400;
-    color: #cbd7e5;
+    color: var(--on-deep-muted);
 }
 
 .summary-list dd {
@@ -149,7 +149,7 @@
 
 .summary-note {
     margin-top: 0.75rem;
-    color: #aabbd0;
+    color: var(--on-deep-faint);
     font-size: 0.85rem;
 }
 

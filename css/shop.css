@@ -12,8 +12,8 @@
     gap: 1.25rem;
     padding: 1.75rem;
     border-radius: 22px;
-    color: var(--white);
-    background: var(--navy);
+    color: var(--on-deep);
+    background: var(--deep);
     box-shadow: 12px 12px 0 var(--yellow);
 }
 
@@ -22,7 +22,7 @@
 }
 
 .finder-text p {
-    color: #cbd7e5;
+    color: var(--on-deep-muted);
 }
 
 .finder-fields {
@@ -37,12 +37,12 @@
 }
 
 .finder .form-label {
-    color: #cbd7e5;
+    color: var(--on-deep-muted);
     font-size: 0.9rem;
 }
 
 .finder-error {
-    color: #ffb48a;
+    color: var(--error-on-deep);
     font-weight: 500;
 }
 
@@ -55,7 +55,7 @@
     padding: 1rem 1.25rem;
     border-radius: 14px;
     color: var(--text);
-    background: var(--white);
+    background: var(--surface);
 }
 
 .finder-result a {
@@ -92,12 +92,12 @@
     padding: 1.25rem;
     border: 1px solid var(--line);
     border-radius: 18px;
-    background: var(--white);
+    background: var(--surface);
     transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .product:hover {
-    box-shadow: 0 12px 30px #10253f18;
+    box-shadow: 0 12px 30px var(--shadow);
     transform: translateY(-6px);
 }
 
@@ -113,7 +113,7 @@
 }
 
 .product h3 {
-    color: var(--navy);
+    color: var(--heading);
 }
 
 .product-size {
@@ -135,7 +135,7 @@
 }
 
 .product-price {
-    color: var(--navy);
+    color: var(--heading);
     font: 700 1.25rem 'Space Grotesk', sans-serif;
 }
 
@@ -143,9 +143,9 @@
     position: sticky;
     top: 90px;
     padding: 1.5rem;
-    border: 2px solid var(--navy);
+    border: 2px solid var(--heading);
     border-radius: 18px;
-    background: var(--white);
+    background: var(--surface);
 }
 
 .cart-badge {
@@ -155,7 +155,7 @@
     padding: 0 0.4rem;
     place-items: center;
     border-radius: 999px;
-    color: var(--navy);
+    color: var(--on-accent);
     background: var(--orange);
     font-size: 0.9rem;
 }
@@ -212,8 +212,8 @@
     height: 30px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    color: var(--navy);
-    background: var(--white);
+    color: var(--heading);
+    background: var(--surface);
     line-height: 1;
     transition: border-color 0.2s, color 0.2s;
 }
@@ -256,7 +256,7 @@
 }
 
 .cart-total strong {
-    color: var(--navy);
+    color: var(--heading);
     font-size: 1.75rem;
 }
 
