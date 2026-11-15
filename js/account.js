@@ -1,6 +1,27 @@
 const signupIds = ["signupName", "signupEmail", "signupPassword", "signupRepeat"];
 const loginIds = ["loginEmail", "loginPassword"];
 
+function todayText() {
+    const today = new Date();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return today.getFullYear() + "-" + month + "-" + day;
+}
+
+function findUser(email) {
+    const users = readSaved("cargoPulseUsers", []);
+    for (let i = 0; i < users.length; i++) {
+        if (users[i] && users[i].email === email) {
+            return users[i];
+        }
+    }
+    return null;
+}
+
+function openPage(address) {
+    window.location.href = address;
+}
+
 function showError($field, message) {
     $field.addClass("is-invalid").removeClass("is-valid");
     $field.closest("div").find(".invalid-feedback").text(message);
@@ -34,6 +55,10 @@ function checkField(id) {
         }
         if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(value)) {
             showError($field, "This email looks wrong. Example: name@company.kz");
+            return false;
+        }
+        if (id === "signupEmail" && findUser(value.toLowerCase()) !== null) {
+            showError($field, "This email already has an account. Please log in.");
             return false;
         }
     }
@@ -88,7 +113,62 @@ function showSuccess(boxId, html) {
         .trigger("focus");
 }
 
+function showLoggedIn() {
+    const user = findUser(readSaved("cargoPulseCurrentUser", ""));
+    if (user === null) {
+        return;
+    }
+    $("#loggedInName").text(user.name);
+    $("#loggedInBox").show();
+}
+
+function signUp() {
+    const name = $.trim($("#signupName").val());
+    const email = $.trim($("#signupEmail").val()).toLowerCase();
+    const users = readSaved("cargoPulseUsers", []);
+
+    users.push({
+        name: name,
+        email: email,
+        password: $.trim($("#signupPassword").val()),
+        joined: todayText()
+    });
+
+    if (!saveData("cargoPulseUsers", users)) {
+        showError($("#signupEmail"), "This browser does not let us save data. Please allow site data.");
+        return;
+    }
+    saveData("cargoPulseCurrentUser", email);
+
+    const safeName = $("<span>").text(name).html();
+    showSuccess("signupSuccess",
+        '<h3 class="h5">Welcome, ' + safeName + "!</h3>" +
+        '<p class="mb-0">Your account is ready. We are opening your profile...</p>'
+    );
+
+    setTimeout(function () {
+        openPage("profile.html");
+    }, 1200);
+}
+
+function logIn() {
+    const email = $.trim($("#loginEmail").val()).toLowerCase();
+    const password = $.trim($("#loginPassword").val());
+    const user = findUser(email);
+
+    if (user === null || user.password !== password) {
+        showError($("#loginPassword"), "Wrong email or password.");
+        $("#loginPassword").trigger("focus");
+        return;
+    }
+
+    saveData("cargoPulseCurrentUser", user.email);
+    openPage("profile.html");
+}
+
 $(function () {
+    showLoggedIn();
+
     $("#signupForm, #loginForm").on("input", "input", function () {
         if ($(this).hasClass("is-invalid")) {
             checkField(this.id);
@@ -107,7 +187,7 @@ $(function () {
             return;
         }
 
-        showSuccess("signupSuccess", '<h3 class="h5 mb-0">All fields are correct.</h3>');
+        signUp();
     });
 
     $("#loginForm").on("submit", function (event) {
@@ -118,6 +198,6 @@ $(function () {
             return;
         }
 
-        showSuccess("loginSuccess", '<h3 class="h5 mb-0">All fields are correct.</h3>');
+        logIn();
     });
 });

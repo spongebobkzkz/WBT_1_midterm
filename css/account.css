@@ -9,6 +9,22 @@
     font-weight: 500;
 }
 
+.logged-box {
+    display: none;
+    max-width: 640px;
+    margin: 0.75rem 0 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--success-line);
+    border-radius: 12px;
+    color: var(--success);
+    background: var(--success-bg);
+}
+
+.logged-box a {
+    color: var(--success);
+    font-weight: 700;
+}
+
 .account-form h2 {
     color: var(--heading);
 }
