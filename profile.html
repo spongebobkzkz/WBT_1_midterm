@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta
+        name="description"
+        content="Your Cargo/Pulse profile and saved quotes"
+    >
+
+    <title>Your profile — Cargo/Pulse</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/account.css">
+
+    <script src="js/theme.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top site-nav" aria-label="Main menu">
+        <div class="container py-2">
+
+            <a class="navbar-brand brand" href="index.html">
+                CARGO<span>/</span>PULSE
+            </a>
+
+            <div class="nav-tools order-lg-last">
+                <a class="tool-btn" href="shop.html#cartTitle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 4h2l2.4 11h11l2-8H6.2"/>
+                        <circle cx="9.5" cy="19.5" r="1.5"/>
+                        <circle cx="17" cy="19.5" r="1.5"/>
+                    </svg>
+                    <span class="visually-hidden">Cart, items:</span>
+                    <span class="cart-count" id="navCartCount">0</span>
+                </a>
+
+                <button class="tool-btn theme-toggle" id="themeToggle" type="button" aria-label="Dark mode" aria-pressed="false">
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>
+                    </svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+                    </svg>
+                </button>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Open the menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Send a parcel
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="quote.html">
+                                    Get a price
+                                    <small>See the cost before you send</small>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="pickup.html">
+                                    Book a pickup
+                                    <small>A courier comes to your door</small>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="shop.html">
+                                    Packing shop
+                                    <small>Boxes, tape and bubble wrap</small>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a class="btn btn-orange nav-cta" href="tracking.html">Track a parcel</a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="page-head">
+            <div class="container">
+                <div class="eyebrow">
+                    Your account
+                </div>
+
+                <h1 class="section-title">
+                    Your profile.
+                </h1>
+
+                <p class="demo-note">
+                    This is a demo. Your data is saved only in this browser.
+                    Do not use a real password.
+                </p>
+            </div>
+        </section>
+
+        <section class="section pt-3">
+            <div class="container">
+
+                <div class="empty-state profile-empty" id="profileEmpty">
+                    <strong>You are not logged in</strong>
+                    <p>Log in or create an account to see your profile.</p>
+                    <a class="btn btn-orange" href="account.html">
+                        Sign up or log in →
+                    </a>
+                </div>
+
+                <div class="profile-area" id="profileArea">
+                    <article class="cardx no-lift profile-card">
+                        <h2 class="h3" id="profileName"></h2>
+
+                        <dl class="profile-list">
+                            <dt>Email</dt>
+                            <dd id="profileEmail"></dd>
+
+                            <dt>Member since</dt>
+                            <dd id="profileJoined"></dd>
+                        </dl>
+
+                        <button class="btn btn-soft" type="button" id="logoutButton">
+                            Log out
+                        </button>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+                <div>
+                    <div class="brand footer-brand">
+                        CARGO<span>/</span>PULSE
+                    </div>
+
+                    <div class="muted mt-2">
+                        Clear logistics for growing businesses.
+                    </div>
+                </div>
+
+                <div class="muted">
+                    © 2026 Cargo/Pulse, Kazakhstan
+                </div>
+            </div>
+
+            <p class="credits muted mb-0">
+                Credits: layout, menu and form components with Bootstrap 5.3; effects
+                with jQuery 3.7; fonts Space Grotesk and DM Sans from Google Fonts.
+                The drawings (truck, boxes, menu icons) and most of the JavaScript
+                and CSS were made with the help of the AI assistant Claude (Anthropic).
+                We tested every feature and checked the code ourselves.
+            </p>
+        </div>
+    </footer>
+
+    <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+
+</body>
+</html>
