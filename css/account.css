@@ -1,0 +1,22 @@
+.demo-note {
+    max-width: 640px;
+    margin: 1.25rem 0 0;
+    padding: 0.85rem 1rem;
+    border-left: 6px solid var(--orange);
+    border-radius: 12px;
+    color: var(--warn-text);
+    background: var(--warn-bg);
+    font-weight: 500;
+}
+
+.account-form h2 {
+    color: var(--heading);
+}
+
+.account-form .btn-orange {
+    width: 100%;
+}
+
+.form-text {
+    color: var(--muted);
+}
