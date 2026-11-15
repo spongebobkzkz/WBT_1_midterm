@@ -28,6 +28,20 @@ function renderQuestions() {
     }
 }
 
+function checkQuickCode() {
+    const $field = $("#quickCode");
+
+    if ($.trim($field.val()) === "") {
+        $field.addClass("is-invalid");
+        $("#quickCodeError").text("Please write a tracking code, for example CP-2048-KZ.");
+        return false;
+    }
+
+    $field.removeClass("is-invalid");
+    $("#quickCodeError").text("");
+    return true;
+}
+
 let numbersDone = false;
 
 function countNumbers() {
@@ -62,6 +76,19 @@ function countNumbers() {
 
 $(function () {
     renderQuestions();
+
+    $("#quickTrack").on("submit", function (event) {
+        if (!checkQuickCode()) {
+            event.preventDefault();
+            $("#quickCode").trigger("focus");
+        }
+    });
+
+    $("#quickCode").on("input", function () {
+        if ($(this).hasClass("is-invalid")) {
+            checkQuickCode();
+        }
+    });
 
     $("#faqList").on("click", ".faq-question", function () {
         const $button = $(this);

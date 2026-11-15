@@ -132,8 +132,17 @@ function renderTable() {
     );
 }
 
+function openCodeFromLink() {
+    const code = new URLSearchParams(window.location.search).get("code");
+    if (code !== null) {
+        $("#trackCode").val(code);
+        track();
+    }
+}
+
 $(function () {
     renderTable();
+    openCodeFromLink();
 
     $("#trackForm").on("submit", function (event) {
         event.preventDefault();

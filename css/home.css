@@ -8,6 +8,40 @@
     color: var(--orange);
 }
 
+.quick-track {
+    max-width: 480px;
+    margin-top: 2rem;
+}
+
+.quick-track .form-label {
+    color: var(--on-deep);
+}
+
+.quick-track-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.quick-track .form-control {
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.quick-track .btn-orange {
+    flex-shrink: 0;
+}
+
+.quick-track .form-control:focus-visible,
+.quick-track .btn:focus-visible {
+    outline-color: var(--yellow);
+}
+
+.quick-track .invalid-feedback {
+    min-height: 1.4rem;
+    margin-top: 0.4rem;
+    color: var(--orange-hover);
+}
+
 .stats {
     padding: 3rem 0;
     color: var(--on-deep);

@@ -141,6 +141,31 @@
                                 Questions ↓
                             </a>
                         </div>
+
+                        <form class="quick-track" id="quickTrack" action="tracking.html" method="get" novalidate>
+                            <label class="form-label" for="quickCode">
+                                Track a parcel
+                            </label>
+
+                            <div class="quick-track-row">
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    id="quickCode"
+                                    name="code"
+                                    placeholder="CP-2048-KZ"
+                                    autocomplete="off"
+                                    maxlength="20"
+                                    aria-describedby="quickCodeError"
+                                >
+
+                                <button class="btn btn-orange" type="submit">
+                                    Track →
+                                </button>
+                            </div>
+
+                            <div class="invalid-feedback d-block" id="quickCodeError"></div>
+                        </form>
                     </div>
 
                     <div class="col-lg-5">
