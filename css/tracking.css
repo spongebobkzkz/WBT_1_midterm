@@ -26,13 +26,13 @@
 .result-card {
     padding: 1.75rem;
     border-radius: 22px;
-    color: var(--white);
-    background: var(--navy);
+    color: var(--on-deep);
+    background: var(--deep);
     box-shadow: 12px 12px 0 var(--orange);
 }
 
 .result-card h2 {
-    color: var(--white);
+    color: var(--on-deep);
 }
 
 .result-top {
@@ -46,7 +46,7 @@
 .status-tag {
     padding: 0.35rem 0.85rem;
     border-radius: 999px;
-    color: var(--navy);
+    color: var(--on-accent);
     background: var(--yellow);
     font-weight: 700;
 }
@@ -56,7 +56,7 @@
     height: 14px;
     margin: 2.5rem 0 1rem;
     border-radius: 999px;
-    background: repeating-linear-gradient(90deg, #2d4566 0 18px, #1b3150 18px 30px);
+    background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--on-deep) 18%, var(--deep)) 0 18px, color-mix(in srgb, var(--on-deep) 6%, var(--deep)) 18px 30px);
 }
 
 .road-done {
@@ -95,7 +95,7 @@
     margin: 0 0 1.25rem;
     padding: 0;
     list-style: none;
-    color: #8ea2bb;
+    color: var(--on-deep-faint);
     font-size: 0.85rem;
 }
 
@@ -104,13 +104,13 @@
     width: 12px;
     height: 12px;
     margin-bottom: 0.35rem;
-    border: 2px solid #8ea2bb;
+    border: 2px solid var(--on-deep-faint);
     border-radius: 50%;
     content: '';
 }
 
 .result-steps .done {
-    color: var(--white);
+    color: var(--on-deep);
 }
 
 .result-steps .done::before {
@@ -125,13 +125,13 @@
 
 .result-steps .now::before {
     border-color: var(--yellow);
-    box-shadow: 0 0 0 4px rgba(255, 214, 107, 0.25);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--yellow) 25%, transparent);
 }
 
 .track-table {
     overflow: hidden;
     border-radius: 14px;
-    background: var(--white);
+    background: var(--surface);
 }
 
 .track-table tbody tr {
@@ -139,7 +139,7 @@
 }
 
 .track-table tbody tr:hover {
-    background: #fff6ee;
+    background: color-mix(in srgb, var(--orange) 8%, var(--surface));
 }
 
 .code-button {
@@ -191,7 +191,7 @@
         margin-bottom: 0.75rem;
         border: 1px solid var(--line);
         border-radius: 14px;
-        background: var(--white);
+        background: var(--surface);
     }
 
     .track-table > :not(caption) > * > * {
@@ -218,6 +218,6 @@
 }
 
 .track-table thead th {
-    color: var(--white);
-    background: var(--navy);
+    color: var(--on-deep);
+    background: var(--deep);
 }

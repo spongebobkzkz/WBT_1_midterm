@@ -14,7 +14,7 @@
     padding: 0.85rem 1rem;
     border-left: 4px solid var(--blue);
     border-radius: 10px;
-    background: #eef4fc;
+    background: var(--soft-blue);
     font-size: 0.92rem;
 }
 
@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    color: var(--navy);
+    color: var(--heading);
     font-weight: 500;
     cursor: pointer;
 }
@@ -41,7 +41,7 @@
 .compare-check input {
     width: 18px;
     height: 18px;
-    accent-color: var(--navy);
+    accent-color: var(--heading);
 }
 
 .compare-bar {
@@ -50,9 +50,9 @@
     z-index: 15;
     display: none;
     padding: 0.9rem 0;
-    color: var(--white);
-    background: var(--navy);
-    box-shadow: 0 -8px 24px rgba(16, 37, 63, 0.2);
+    color: var(--on-deep);
+    background: var(--deep);
+    box-shadow: 0 -8px 24px var(--shadow);
 }
 
 .compare-inner {
@@ -64,8 +64,8 @@
 }
 
 .compare-bar .btn-soft {
-    border-color: rgba(255, 255, 255, 0.4);
-    color: var(--white);
+    border-color: color-mix(in srgb, var(--on-deep) 40%, transparent);
+    color: var(--on-deep);
     background: transparent;
 }
 
@@ -76,7 +76,7 @@
 
 .compare-error {
     margin-top: 0.4rem;
-    color: #ffb48a;
+    color: var(--orange-hover);
     font-weight: 500;
 }
 
@@ -88,7 +88,7 @@
     display: none;
     padding: 1.5rem;
     border-radius: 18px;
-    background: var(--white);
+    background: var(--surface);
 }
 
 .compare-table th[scope="row"] {
@@ -112,6 +112,6 @@
 }
 
 .compare-table thead th {
-    color: var(--white);
-    background: var(--navy);
+    color: var(--on-deep);
+    background: var(--deep);
 }

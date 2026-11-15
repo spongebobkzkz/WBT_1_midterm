@@ -10,7 +10,7 @@
 
 .stats {
     padding: 3rem 0;
-    color: var(--white);
+    color: var(--on-deep);
     background: var(--blue);
 }
 
@@ -34,7 +34,7 @@
 
 .stat-label {
     margin-top: 0.4rem;
-    color: #e6f0ff;
+    color: color-mix(in srgb, var(--on-deep) 90%, var(--blue));
 }
 
 .faq-item {
@@ -42,7 +42,7 @@
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: 14px;
-    background: var(--white);
+    background: var(--surface);
     transition: border-color 0.2s;
 }
 
@@ -62,7 +62,7 @@
     width: 100%;
     padding: 1rem 1.25rem;
     border: 0;
-    color: var(--navy);
+    color: var(--heading);
     background: none;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
@@ -74,7 +74,7 @@
     padding: 0.2rem 0.6rem;
     border-radius: 999px;
     color: var(--blue);
-    background: #e6f0ff;
+    background: var(--soft-blue);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;

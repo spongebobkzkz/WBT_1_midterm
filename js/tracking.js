@@ -123,7 +123,7 @@ function renderTable() {
     }
 
     if (shown === 0) {
-        $rows.html('<tr><td colspan="4" class="text-center text-secondary">No shipments with this status this week.</td></tr>');
+        $rows.html('<tr><td colspan="4" class="text-center muted">No shipments with this status this week.</td></tr>');
     }
 
     $("#shipmentStats").text(

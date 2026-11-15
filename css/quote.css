@@ -18,7 +18,7 @@ fieldset {
     padding: 1rem 1rem 1rem 2.75rem;
     border: 2px solid var(--line);
     border-radius: 14px;
-    background: var(--white);
+    background: var(--surface);
     cursor: pointer;
     transition: border-color 0.2s, transform 0.2s, background 0.2s;
 }
@@ -34,12 +34,12 @@ fieldset {
     left: 1rem;
     width: 18px;
     height: 18px;
-    accent-color: var(--navy);
+    accent-color: var(--heading);
 }
 
 .mode-card:has(input:checked) {
-    border-color: var(--navy);
-    background: #eef4fc;
+    border-color: var(--heading);
+    background: var(--soft-blue);
 }
 
 .mode-card:has(input:focus-visible) {
@@ -56,12 +56,12 @@ fieldset {
 }
 
 .mode-name {
-    color: var(--navy);
+    color: var(--heading);
     font-weight: 700;
 }
 
 .mode-price {
-    color: var(--navy);
+    color: var(--heading);
     font: 700 1.3rem 'Space Grotesk', sans-serif;
 }
 

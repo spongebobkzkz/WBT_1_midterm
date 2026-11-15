@@ -51,9 +51,9 @@ function renderServices() {
             '<article class="cardx service-card">' +
             '<span class="tag">' + s.tag + "</span>" +
             '<h2 class="h4 mt-3">' + s.name + "</h2>" +
-            '<p class="text-secondary">' + s.text + "</p>" +
+            '<p class="muted">' + s.text + "</p>" +
             '<div class="price">' + formatPrice(s) + "</div>" +
-            '<small class="text-secondary">' + s.unit + "</small>" +
+            '<small class="muted">' + s.unit + "</small>" +
             '<div class="service-details" id="details-' + s.id + '">' + s.details + "</div>" +
             '<div class="service-actions">' +
             '<button class="btn-soft more-button" type="button" data-id="' + s.id + '" aria-expanded="false" aria-controls="details-' + s.id + '">More</button>' +
