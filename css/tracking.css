@@ -145,7 +145,7 @@
 .code-button {
     padding: 0;
     border: 0;
-    color: var(--blue);
+    color: var(--link);
     background: none;
     font-weight: 700;
     text-decoration: underline;

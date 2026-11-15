@@ -43,7 +43,7 @@ fieldset {
 }
 
 .mode-card:has(input:focus-visible) {
-    outline: 3px solid var(--blue);
+    outline: 3px solid var(--link);
     outline-offset: 3px;
 }
 

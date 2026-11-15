@@ -107,7 +107,7 @@
     flex-shrink: 0;
     padding: 0.2rem 0.6rem;
     border-radius: 999px;
-    color: var(--blue);
+    color: var(--link);
     background: var(--soft-blue);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.75rem;
