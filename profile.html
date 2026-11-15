@@ -149,6 +149,25 @@
                             Log out
                         </button>
                     </article>
+
+                    <section class="saved-quotes" aria-labelledby="savedTitle">
+                        <div class="saved-head">
+                            <h2 class="h3 mb-0" id="savedTitle" tabindex="-1">
+                                Saved quotes (<span id="quoteCount">0</span>)
+                            </h2>
+
+                            <button class="btn btn-soft" type="button" id="clearQuotes">
+                                Clear all
+                            </button>
+                        </div>
+
+                        <div class="row g-3" id="quoteList"></div>
+
+                        <div class="empty-state" id="quotesEmpty">
+                            <strong>No saved quotes yet.</strong>
+                            <a href="quote.html">Get a price</a>
+                        </div>
+                    </section>
                 </div>
 
             </div>

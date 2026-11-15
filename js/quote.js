@@ -20,6 +20,7 @@ const modes = [
 const typeExtra = { commercial: 1, personal: 1, electronics: 1.15, fragile: 1.25 };
 
 let chosenMode = "";
+let lastQuote = null;
 
 function findCity(name) {
     for (let i = 0; i < cities.length; i++) {
@@ -122,6 +123,42 @@ function renderModes() {
             '<span class="mode-days">' + daysText + "</span>";
         $box.append(label);
     }
+}
+
+function todayText() {
+    const today = new Date();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return today.getFullYear() + "-" + month + "-" + day;
+}
+
+function findCurrentUser() {
+    const email = readSaved("cargoPulseCurrentUser", "");
+    const users = readSaved("cargoPulseUsers", []);
+    for (let i = 0; i < users.length; i++) {
+        if (users[i] && users[i].email === email) {
+            return users[i];
+        }
+    }
+    return null;
+}
+
+function saveButtonHtml() {
+    if (findCurrentUser() === null) {
+        return '<a class="btn btn-orange" href="account.html">Log in to save quotes</a>';
+    }
+    return '<button class="btn btn-orange" type="button" id="saveQuote">Save this quote</button>';
+}
+
+function saveQuote() {
+    const quotes = readSaved("cargoPulseQuotes", []);
+    quotes.push(lastQuote);
+    saveData("cargoPulseQuotes", quotes);
+
+    $("#saveQuote").replaceWith(
+        '<a class="btn btn-soft" id="savedLink" href="profile.html">Saved ✓ · See it in your profile</a>'
+    );
+    $("#savedLink").trigger("focus");
 }
 
 function showError($field, message) {
@@ -267,6 +304,8 @@ $(function () {
         }
     });
 
+    $("#quoteSuccess").on("click", "#saveQuote", saveQuote);
+
     $("#details").on("input", function () {
         $("#detailsCount").text($(this).val().length + " / 500");
     });
@@ -296,6 +335,18 @@ $(function () {
             }
         }
         const result = estimate(mode);
+
+        lastQuote = {
+            id: Date.now(),
+            from: $("#from").val(),
+            to: $("#to").val(),
+            mode: mode.name,
+            weight: Number($("#weight").val()),
+            price: result.price,
+            days: result.days,
+            date: todayText()
+        };
+
         const name = $("<span>").text($.trim($("#customerName").val())).html();
         const email = $("<span>").text($.trim($("#customerEmail").val())).html();
 
@@ -307,7 +358,8 @@ $(function () {
                 '<p class="mb-1">' + mode.name + ": " + $("#from").val() + " → " + $("#to").val() +
                 ", " + $("#weight").val() + " kg.</p>" +
                 '<p class="mb-0">Estimated price <strong>' + formatPrice(result.price) +
-                "</strong>, about " + result.days + " days. The final offer comes to " + email + " within one working day.</p>"
+                "</strong>, about " + result.days + " days. The final offer comes to " + email + " within one working day.</p>" +
+                '<div class="success-actions">' + saveButtonHtml() + "</div>"
             )
             .slideDown(400)
             .trigger("focus");
