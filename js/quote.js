@@ -143,6 +143,19 @@ function findCurrentUser() {
     return null;
 }
 
+function fillFromAccount() {
+    const user = findCurrentUser();
+    if (user === null) {
+        return;
+    }
+    if ($("#customerName").length > 0) {
+        $("#customerName").val(user.name);
+    }
+    if ($("#customerEmail").length > 0) {
+        $("#customerEmail").val(user.email);
+    }
+}
+
 function saveButtonHtml() {
     if (findCurrentUser() === null) {
         return '<a class="btn btn-orange" href="account.html">Log in to save quotes</a>';
@@ -180,8 +193,9 @@ function checkField(id) {
             showError($field, "Please write your name.");
             return false;
         }
-        if (value.length < 2 || /\d/.test(value)) {
-            showError($field, "The name must have at least 2 letters and no numbers.");
+        const letters = value.replace(/[^\p{L}]/gu, "");
+        if (letters.length < 2 || !/^[\p{L}\s'-]+$/u.test(value)) {
+            showError($field, "The name must have at least 2 letters and no numbers or signs.");
             return false;
         }
     }
@@ -274,6 +288,7 @@ const fieldIds = ["customerName", "customerEmail", "customerPhone", "from", "to"
 $(function () {
     fillCityLists();
     renderModes();
+    fillFromAccount();
 
     const today = new Date();
     const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -359,7 +374,9 @@ $(function () {
                 ", " + $("#weight").val() + " kg.</p>" +
                 '<p class="mb-0">Estimated price <strong>' + formatPrice(result.price) +
                 "</strong>, about " + result.days + " days. The final offer comes to " + email + " within one working day.</p>" +
-                '<div class="success-actions">' + saveButtonHtml() + "</div>"
+                '<div class="success-actions">' + saveButtonHtml() +
+                '<a class="btn btn-soft" href="pickup.html?weight=' + lastQuote.weight + '">Book a pickup for this →</a>' +
+                "</div>"
             )
             .slideDown(400)
             .trigger("focus");
@@ -369,5 +386,6 @@ $(function () {
         $("#detailsCount").text("0 / 500");
         chosenMode = "";
         renderModes();
+        fillFromAccount();
     });
 });
